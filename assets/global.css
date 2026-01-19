@@ -1,0 +1,30 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    color: white;
+}
+
+body {
+    background-color: #303030;
+}
+
+main {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    background: #222;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
