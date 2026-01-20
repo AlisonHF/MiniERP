@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario extends CI_Controller
+class Usuario extends MY_Controller
 {
     public function __construct() 
     {
@@ -73,12 +73,10 @@ class Usuario extends CI_Controller
         $validation = form_validation_helper($rules);
 
         if (!empty($validation)) {
-            return $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode([
+            return $this->outputJson([
                 'status' => false,
                 'message' => $validation
-            ]));
+            ]);
         }
         // Fim validação
 
@@ -88,12 +86,10 @@ class Usuario extends CI_Controller
 
         $this->Usuario_model->store($createUsuarioDTO);
 
-        return $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode([
-                'status' => true,
-                'message' => ['Usuário cadastrado com sucesso!'],
-        ]));
+        return $this->outputJson([
+            'status' => true,
+            'message' => ['Usuário cadastrado com sucesso!'],
+        ]);
     }
 
     public function login()
@@ -106,28 +102,22 @@ class Usuario extends CI_Controller
         $usuario = $this->Usuario_model->get_by_email($email);
 
         if (!$usuario) {
-            return $this->output
-                ->set_content_type('application/json')
-                ->set_output(json_encode([
-                    'status' => false,
-                    'message' => ['Usuário não encontrado!'],
-            ]));
+            return $this->outputJson([
+                'status' => false,
+                'message' => ['Usuário não encontrado!'],
+            ]);
         }
 
         if (!password_verify($senha, $usuario['senha'])) {
-            return $this->output
-                ->set_content_type('application/json')
-                ->set_output(json_encode([
-                    'status' => false,
-                    'message' => ['Senha incorreta!'],
-            ]));
+            return $this->outputJson([
+                'status' => false,
+                'message' => ['Senha incorreta!'],
+            ]);
         }
 
-        return $this->output
-                ->set_content_type('application/json')
-                ->set_output(json_encode([
-                    'status' => true,
-                    'message' => ['Logado!'],
-        ]));
+        return $this->outputJson([
+            'status' => true,
+            'message' => ['Logado!'],
+        ]);
     }
 }
