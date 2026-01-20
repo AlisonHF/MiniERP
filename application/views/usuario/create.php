@@ -7,12 +7,12 @@
         </div>
 
         <div class="col-md-9 right-divisor">
-            <form id="loginForm" class="w-100 p-5">
+            <form id="createForm" class="w-100 p-5">
                 <h2 class="text-center mb-1">Cadastrar</h2>
 
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome:</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="TESTE" >
+                    <input type="text" class="form-control" id="nome" name="nome">
                 </div>
 
                 <div class="mb-3">
