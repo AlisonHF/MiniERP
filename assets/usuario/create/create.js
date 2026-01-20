@@ -1,67 +1,4 @@
-function sendForm() {
-    let nome = $('#nome').val();
-
-    let email = $('#email').val();
-
-    let senha = $('#senha').val();
-
-    let confirmarSenha = $('#confirmarSenha').val();
-
-    if (formValidate()) {
-        let formData = new FormData();
-
-        formData.append('nome', nome);
-        formData.append('email', email);
-        formData.append('senha', senha);
-        formData.append('confirmarSenha', confirmarSenha);
-
-        fetch('/usuario/store', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            const messages = data.message ? Object.values(data.message).map(message => message).join('<br>') : '';
-
-            if (data.status) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso!',
-                    html: messages,
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '/';
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Ocorreu um erro!',
-                    html: messages
-                });
-            }
-        })
-        .catch(error => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Ocorreu um erro!',
-                message: error
-            });
-        });
-    }
-}
-
-function formValidate() {
-
-    let nome = $('#nome').val().trim();
-
-    let email = $('#email').val().trim();
-
-    let senha = $('#senha').val();
-
-    let confirmarSenha = $('#confirmarSenha').val();
-
+function formValidate(nome, email, senha, confirmarSenha) {
     let errors = [];
 
     // Validações
@@ -107,7 +44,61 @@ function formValidate() {
     return true;
 }
 
-$('#loginForm').submit(function(event) {
+function sendForm() {
+    let nome = $('#nome').val();
+
+    let email = $('#email').val();
+
+    let senha = $('#senha').val();
+
+    let confirmarSenha = $('#confirmarSenha').val();
+
+    if (formValidate(nome, email, senha, confirmarSenha)) {
+        let formData = new FormData();
+
+        formData.append('nome', nome);
+        formData.append('email', email);
+        formData.append('senha', senha);
+        formData.append('confirmarSenha', confirmarSenha);
+
+        fetch('/usuario/store', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const messages = data.message ? Object.values(data.message).map(message => message).join('<br>') : '';
+
+            if (data.status) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    html: messages,
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/';
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ocorreu um erro!',
+                    html: messages
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ocorreu um erro!',
+                message: error
+            });
+        });
+    }
+}
+
+$('#createForm').submit(function(event) {
     event.preventDefault();
 
     sendForm();

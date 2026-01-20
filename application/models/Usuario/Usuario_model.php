@@ -18,4 +18,9 @@ class Usuario_model extends CI_Model
             return $e->getMessage();
         }
     }
+
+    public function get_by_email($email)
+    {
+        return $this->db->get_where('usuario', ['email' => $email])->row_array();
+    }
 }
