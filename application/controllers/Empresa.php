@@ -1,14 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 
 class Empresa extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->model('Empresa_model');
     }
 
     public function create()
@@ -48,6 +50,21 @@ class Empresa extends MY_Controller
             $data['cidade'],
             $data['uf']
         );
+
+        $id = $this->Empresa_model->store($createEmpresaDto);
+
+        if ($id > 0) {
+            return $this->outputJson([
+                'status' => true,
+                'message' => 'Empresa cadastrada com sucesso!',
+                'id' => $id
+            ]);
+        }
+
+        return $this->outputJson([
+            'status' => false,
+            'message' => 'Erro ao cadastrar empresa!'
+        ]);
 
     }
 }

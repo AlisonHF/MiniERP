@@ -135,8 +135,34 @@ function sendForm() {
         })
         .then(response => response.json())
         .then(data => {
+            const messages = data.message;
 
+            if (data.status) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Sucesso!',
+                    html: messages,
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/empresa/create';
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campo inválido!',
+                    html: messages
+                });
+            }
         })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Ocorreu um erro!',
+                message: error
+            });
+        });
     }   
 }
 

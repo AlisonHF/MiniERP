@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class CreateEmpresaDTO
 {
     private string $razaoSocial;
@@ -147,5 +149,21 @@ class CreateEmpresaDTO
     {
         $this->uf = $uf;
         return $this;
+    }
+
+    public function asArray(): array
+    {
+        return [
+            'razao_social' => $this->razaoSocial,
+            'nome_fantasia' => $this->nomeFantasia,
+            'cnpj' => $this->cnpj,
+            'inscricao_estadual' => $this->inscricaoEstadual,
+            'cep' => $this->cep,
+            'endereco' => $this->endereco,
+            'bairro' => $this->bairro,
+            'numero' => $this->numero,
+            'cidade' => $this->cidade,
+            'uf' => $this->uf,
+        ];
     }
 }

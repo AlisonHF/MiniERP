@@ -1,7 +1,6 @@
 function formValidate(nome, email, senha, confirmarSenha) {
     let errors = [];
 
-    // Validações
     if (!nome) {
         errors.push('O campo nome é obrigatório!');
     } else if (nome.length < 3) {
@@ -29,7 +28,6 @@ function formValidate(nome, email, senha, confirmarSenha) {
     } else if (senha != confirmarSenha) {
         errors.push('As senhas são diferentes!');
     }
-    // Fim validações
 
     if (errors.length > 0) {
         Swal.fire({
@@ -100,6 +98,5 @@ function sendForm() {
 
 $('#createForm').submit(function(event) {
     event.preventDefault();
-
     sendForm();
 });
