@@ -59,7 +59,7 @@ function sendForm()
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Ocorreu um erro!',
+                    title: 'Login negado!',
                     html: messages
                 });
             }

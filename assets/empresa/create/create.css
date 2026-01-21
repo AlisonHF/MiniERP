@@ -1,0 +1,57 @@
+.create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border: 1px solid #000;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+
+}
+
+.left-divisor {
+    border-right: 1px solid #000;
+    text-align: center;
+}
+
+.left-divisor i {
+    font-size: 5vw;
+}
+
+.right-divisor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    font-weight: 600;
+    color: #333;
+}
+
+.section-divider span {
+    white-space: nowrap;
+    color: white;
+}
+
+.section-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #ddd;
+    margin-left: 15px;
+}
+
+.section-divider span{
+    font-size: 16px;
+}
+
+@media screen and (max-width: 768px) {
+    .left-divisor {
+        display: none;
+    }
+}

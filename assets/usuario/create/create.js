@@ -34,7 +34,7 @@ function formValidate(nome, email, senha, confirmarSenha) {
     if (errors.length > 0) {
         Swal.fire({
             icon: 'error',
-            title: 'Ocorreu um erro!',
+            title: 'Campos inválidos!',
             html: errors.map(field => `${field}`).join('<br/>')
         })
 
@@ -83,7 +83,7 @@ function sendForm() {
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Ocorreu um erro!',
+                    title: 'Campo inválido!',
                     html: messages
                 });
             }
