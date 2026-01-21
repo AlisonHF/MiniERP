@@ -1,0 +1,96 @@
+/* ===========================
+   HOME / DASHBOARD - DARK MODE
+   =========================== */
+
+.home-dashboard {
+    background-color: #1e1e1e;
+    color: #eaeaea;
+}
+
+/* ÁREA PRINCIPAL */
+.home-dashboard main {
+    background-color: #1e1e1e;
+}
+
+/* DIVISÃO LATERAL */
+.home-dashboard .left-divisor {
+    background: linear-gradient(180deg, #0d6efd, #084298);
+    color: #ffffff;
+}
+
+.home-dashboard .right-divisor {
+    background-color: #1e1e1e;
+}
+
+/* CARDS DO DASHBOARD */
+.home-dashboard .dashboard-card,
+.home-dashboard .card {
+    background-color: #252525;
+    border: 1px solid #2f2f2f;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    color: #eaeaea;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.home-dashboard .dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75);
+}
+
+/* TÍTULOS */
+.home-dashboard h1,
+.home-dashboard h2,
+.home-dashboard h3,
+.home-dashboard h4,
+.home-dashboard h5 {
+    color: #ffffff;
+}
+
+/* TEXTO SECUNDÁRIO */
+.home-dashboard p,
+.home-dashboard .card-text {
+    color: #bdbdbd;
+}
+
+/* ÍCONES */
+.home-dashboard i {
+    color: #0d6efd;
+}
+
+/* BOTÕES */
+.home-dashboard .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.home-dashboard .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+}
+
+.home-dashboard .btn-outline-primary {
+    color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.home-dashboard .btn-outline-primary:hover {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+/* AÇÕES RÁPIDAS */
+.home-dashboard .actions {
+    margin-top: 1.5rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .home-dashboard .left-divisor {
+        display: none;
+    }
+
+    .home-dashboard .right-divisor {
+        width: 100%;
+    }
+}
