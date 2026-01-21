@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -18,7 +19,7 @@ $config = [
         [
             'field' => 'cnpj',
             'label' => 'CNPJ',
-            'rules' => 'required|exact_length[14]'
+            'rules' => 'required|exact_length[14]|is_unique[empresa.cnpj]'
         ],
         [
             'field' => 'inscricaoEstadual',
