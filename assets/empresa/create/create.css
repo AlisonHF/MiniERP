@@ -1,57 +1,108 @@
-.create {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+/* ============================
+   CADASTRO EMPRESA – AJUSTADO
+   ============================ */
 
-    border: 1px solid #000;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
-
+.empresa-create {
+    height: 100%;
+    background-color: #1e1e1e;
 }
 
-.left-divisor {
-    border-right: 1px solid #000;
+/* LADO ESQUERDO */
+.empresa-create .left-divisor {
+    background: linear-gradient(180deg, #0d6efd, #084298);
+    color: #fff;
     text-align: center;
 }
 
-.left-divisor i {
-    font-size: 5vw;
+.empresa-create .left-divisor i {
+    font-size: 4rem;
+    margin-bottom: .5rem;
 }
 
-.right-divisor {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+/* LADO DIREITO */
+.empresa-create .right-divisor {
+    background-color: #1e1e1e;
+    padding: 1.5rem;
 }
 
+/* WRAPPER DO FORM (contorno visual) */
+.form-wrapper {
+    width: 100%;
+    max-width: 980px;
+    max-height: calc(100vh - 140px); /* evita scroll da página */
+    background-color: #252525;
+    border: 1px solid #2f2f2f;
+    border-radius: 14px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 10px 26px rgba(0,0,0,.55);
+    overflow-y: auto; /* scroll só aqui, se precisar */
+}
+
+/* FORM */
+.empresa-form {
+    width: 100%;
+}
+
+/* TÍTULO */
+.empresa-form h2 {
+    color: #ffffff;
+}
+
+/* FIELDSETS */
+.empresa-form fieldset {
+    border: none;
+    margin-bottom: 1.6rem;
+}
+
+/* DIVISOR */
 .section-divider {
     display: flex;
     align-items: center;
-    margin: 20px 0;
-    font-weight: 600;
-    color: #333;
+    margin-bottom: 1rem;
 }
 
 .section-divider span {
+    color: #eaeaea;
+    font-weight: 600;
+    font-size: 15px;
     white-space: nowrap;
-    color: white;
 }
 
 .section-divider::after {
     content: "";
     flex: 1;
     height: 1px;
-    background-color: #ddd;
+    background-color: #3a3a3a;
     margin-left: 15px;
 }
 
-.section-divider span{
-    font-size: 16px;
+/* LABELS */
+.empresa-form .form-label {
+    color: #bdbdbd;
 }
 
-@media screen and (max-width: 768px) {
-    .left-divisor {
+/* INPUTS */
+.empresa-form .form-control {
+    background-color: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    color: #ffffff;
+}
+
+.empresa-form .form-control:focus {
+    background-color: #2a2a2a;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 .15rem rgba(13,110,253,.35);
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .empresa-create .left-divisor {
         display: none;
+    }
+
+    .form-wrapper {
+        max-height: none;
+        border-radius: 0;
+        padding: 1.5rem;
     }
 }
