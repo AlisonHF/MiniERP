@@ -41,7 +41,7 @@
 
                 </fieldset>
                 
-                <fieldset id="dadosEmpresa">
+                <fieldset id="enderecoEmpresa">
                     <legend class="section-divider">
                         <span>Endereço</span>
                     </legend>

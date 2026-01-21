@@ -105,16 +105,16 @@ function sendForm() {
     let uf = $('#uf').val();
 
     if (formValidate(
-            razaoSocial,
-            nomeFantasia,
-            cnpj,
-            inscricaoEstadual,
-            cep,
-            endereco,
-            bairro,
-            numero,
-            cidade,
-            uf
+        razaoSocial,
+        nomeFantasia,
+        cnpj,
+        inscricaoEstadual,
+        cep,
+        endereco,
+        bairro,
+        numero,
+        cidade,
+        uf
     )) {
         let formData = new FormData();
 
