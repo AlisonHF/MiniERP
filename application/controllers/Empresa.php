@@ -26,9 +26,28 @@ class Empresa extends MY_Controller
 
     public function store()
     {
+        $this->load->library('form_validation');
         $data = $this->input->post();
 
-        print_r($data);
-        die;
+        if (!$this->form_validation->run('empresa/store')) {
+            return $this->outputJson([
+                'status' => false,
+                'message' => validation_errors()
+            ]);
+        }
+
+        $createEmpresaDto = new CreateEmpresaDTO(
+            $data['razaoSocial'],
+            $data['nomeFantasia'],
+            $data['cnpj'],
+            $data['inscricaoEstadual'],
+            $data['cep'],
+            $data['endereco'],
+            $data['bairro'],
+            $data['numero'],
+            $data['cidade'],
+            $data['uf']
+        );
+
     }
 }

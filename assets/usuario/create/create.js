@@ -67,7 +67,7 @@ function sendForm() {
         })
         .then(response => response.json())
         .then(data => {
-            const messages = data.message ? Object.values(data.message).map(message => message).join('<br>') : '';
+            const messages = data.message;
 
             if (data.status) {
                 Swal.fire({

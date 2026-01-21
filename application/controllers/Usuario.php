@@ -39,7 +39,7 @@ class Usuario extends MY_Controller
 
     public function store()
     {
-        $this->load->helper('form_validation');
+        $this->load->library('form_validation');
         $data = $this->input->post();
 
         $nome = $data['nome'];
@@ -47,35 +47,10 @@ class Usuario extends MY_Controller
         $senha = $data['senha'];
 
         // Validação backend
-        $rules = [
-            [
-                'field' => 'nome',
-                'label' => 'Nome',
-                'rules' => 'required|min_length[3]|max_length[100]'
-            ],
-            [
-                'field' => 'email',
-                'label' => 'Email',
-                'rules' => 'required|valid_email|is_unique[usuario.email]'
-            ],
-            [
-                'field' => 'senha',
-                'label' => 'Senha',
-                'rules' => 'required|min_length[6]|max_length[255]'
-            ],
-            [
-                'field' => 'confirmarSenha',
-                'label' => 'Confirme sua senha',
-                'rules' => 'required|matches[senha]'
-            ]
-        ];
-
-        $validation = form_validation_helper($rules);
-
-        if (!empty($validation)) {
+        if (!$this->form_validation->run('usuario/store')) {
             return $this->outputJson([
                 'status' => false,
-                'message' => $validation
+                'message' => validation_errors()
             ]);
         }
         // Fim validação
