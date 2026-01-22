@@ -1,13 +1,8 @@
-/* ============================
-   CREATE USUÁRIO
-   ============================ */
-
 .auth-page {
     height: 100%;
     background-color: #1e1e1e;
 }
 
-/* CARD */
 .register-wrapper {
     width: 100%;
     max-width: 460px;
@@ -18,7 +13,6 @@
     box-shadow: 0 10px 26px rgba(0,0,0,.55);
 }
 
-/* HEADER */
 .register-header {
     text-align: center;
     color: #ffffff;
@@ -39,12 +33,10 @@
     opacity: .75;
 }
 
-/* LABELS */
 .auth-form .form-label {
     color: #bdbdbd;
 }
 
-/* INPUTS */
 .auth-form .form-control {
     background-color: #2a2a2a;
     border: 1px solid #3a3a3a;
@@ -57,7 +49,6 @@
     box-shadow: 0 0 0 .15rem rgba(13,110,253,.35);
 }
 
-/* LINK */
 #link-login {
     display: block;
     text-align: center;
@@ -71,7 +62,7 @@
     text-decoration: underline;
 }
 
-/* MOBILE */
+
 @media (max-width: 576px) {
     .register-wrapper {
         padding: 2rem 1.5rem;
