@@ -9,6 +9,13 @@ class Home extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+
+        if (!$this->session->userdata('usuario_id') ||
+            !$this->session->userdata('empresa_id') ||
+            !$this->session->userdata('tipo_usuario')
+        ) {
+            redirect(base_url() . 'usuario/');
+        }
     }
 
     public function index()
@@ -16,11 +23,6 @@ class Home extends MY_Controller
         $conteudo = $this->load->view('home/index', [], true);
 
         $css = ['home/index/index'];
-
-        $data = [ 
-            'total_empresas' => 2,
-            'total_produtos' => 15,
-            'total_usuarios' => 4];
 
         $this->load->view('template/template', [
             'conteudo' => $conteudo,

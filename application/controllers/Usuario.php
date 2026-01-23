@@ -48,9 +48,28 @@ class Usuario extends MY_Controller
             ]);
         }
 
+        $this->session->set_userdata([
+            'usuario_id' => $usuario['id'],
+            'empresa_id' => $usuario['empresa'],
+            'tipo_usuario' => $usuario['tipo_usuario']
+        ]);
+
+        $this->session->sess_regenerate();
+
         return $this->outputJson([
             'status' => true,
             'message' => ['Logado!'],
         ]);
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('usuario_id');
+        $this->session->unset_userdata('empresa_id');
+        $this->session->unset_userdata('tipo_usuario');
+
+        $this->session->sess_regenerate();
+
+        redirect(base_url() . 'usuario/');
     }
 }
