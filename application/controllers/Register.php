@@ -18,14 +18,14 @@ class Register extends MY_Controller
 
     public function index()
     {
-        $conteudo = $this->load->view('register/index', [] , true);
+        $conteudo = $this->load->view('register/index', [], true);
         $css = ['register/index'];
         $js = ['register/index'];
 
         $this->load->view('template/template', [
             'conteudo' => $conteudo,
-            'css' => $css,
-            'js' => $js
+            'css'      => $css,
+            'js'       => $js
         ]);
     }
 
@@ -35,7 +35,7 @@ class Register extends MY_Controller
 
         if (!$this->form_validation->run('register/')) {
             return $this->outputJson([
-                'status'  => false,
+                'status' => false,
                 'message' => validation_errors()
             ]);
         }
