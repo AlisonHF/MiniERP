@@ -21,50 +21,7 @@ class Usuario extends MY_Controller
         $this->load->view('template/template', [
             'conteudo' => $conteudo,
             'css' => $css,
-            'js' => $js    
-        ]);
-    }
-
-    public function create()
-    {
-        $conteudo = $this->load->view('usuario/create', [] , true);
-        $css = ['usuario/create/create'];
-        $js = ['usuario/create/create'];
-
-        $this->load->view('template/template', [
-            'conteudo' => $conteudo,
-            'css' => $css,
-            'js' => $js    
-        ]);
-    }
-
-    public function store()
-    {
-        $this->load->library('form_validation');
-        $data = $this->input->post();
-
-        $nome = $data['nome'];
-        $email = $data['email'];
-        $senha = $data['senha'];
-
-        // Validação backend
-        if (!$this->form_validation->run('usuario/store')) {
-            return $this->outputJson([
-                'status' => false,
-                'message' => validation_errors()
-            ]);
-        }
-        // Fim validação
-
-        $hashSenha = password_hash($senha, PASSWORD_DEFAULT);
-
-        $createUsuarioDTO = new CreateUsuarioDTO($nome, $email, $hashSenha);
-
-        $this->Usuario_model->store($createUsuarioDTO);
-
-        return $this->outputJson([
-            'status' => true,
-            'message' => ['Usuário cadastrado com sucesso!'],
+            'js' => $js
         ]);
     }
 

@@ -23,7 +23,7 @@
                     Entrar
                 </button>
 
-                <a id="link-create" href="<?= base_url('usuario/create') ?>">
+                <a id="link-create" href="<?= base_url('register/') ?>">
                     Não tem uma conta? Cadastre-se agora
                 </a>
 
