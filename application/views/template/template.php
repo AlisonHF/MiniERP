@@ -32,7 +32,13 @@
                         <li class="nav-item">
                             <!-- <a class="nav-link" aria-current="page" href="#">Cadastrar</a> -->
                         </li>
+
                     </ul>
+                    <?php if (isset($user) && !empty($user)): ?>
+                        <div class="ms-auto">
+                            <a class="text-primary" href="<?= base_url() . 'usuario/logout' ?>" style="text-decoration: none;">Sair</a>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>
