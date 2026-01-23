@@ -45,17 +45,7 @@ function sendForm()
             const messages = data.message ? Object.values(data.message).map(message => message).join('<br>') : '';
 
             if (data.status) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Sucesso!',
-                    html: messages,
-                    confirmButtonText: 'OK'
-                })
-                .then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = '/home';
-                    }
-                });
+                window.location.href = '/home';
             } else {
                 Swal.fire({
                     icon: 'error',

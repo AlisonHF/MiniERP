@@ -27,6 +27,7 @@ class Home extends MY_Controller
         $this->load->view('template/template', [
             'conteudo' => $conteudo,
             'css' => $css,
+            'user' => $this->getUser()
         ]);
     }
 }
