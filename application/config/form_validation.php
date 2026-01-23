@@ -5,7 +5,27 @@ declare(strict_types=1);
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $config = [
-    'empresa/store' => [
+    'register/' => [
+        [
+            'field' => 'nome',
+            'label' => 'Nome',
+            'rules' => 'required|min_length[3]|max_length[100]'
+        ],
+        [
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|valid_email|is_unique[usuario.email]'
+        ],
+        [
+            'field' => 'senha',
+            'label' => 'Senha',
+            'rules' => 'required|min_length[6]|max_length[255]'
+        ],
+        [
+            'field' => 'confirmarSenha',
+            'label' => 'Confirme sua senha',
+            'rules' => 'required|matches[senha]'
+        ],
         [
             'field' => 'razaoSocial',
             'label' => 'Razão Social',
@@ -29,7 +49,7 @@ $config = [
         [
             'field' => 'cep',
             'label' => 'CEP',
-            'rules' => 'required|exact_length[9]'
+            'rules' => 'required|exact_length[8]'
         ],
         [
             'field' => 'endereco',
@@ -57,27 +77,4 @@ $config = [
             'rules' => 'required|exact_length[2]'
         ],
     ],
-
-    'usuario/store' => [
-        [
-            'field' => 'nome',
-            'label' => 'Nome',
-            'rules' => 'required|min_length[3]|max_length[100]'
-        ],
-        [
-            'field' => 'email',
-            'label' => 'Email',
-            'rules' => 'required|valid_email|is_unique[usuario.email]'
-        ],
-        [
-            'field' => 'senha',
-            'label' => 'Senha',
-            'rules' => 'required|min_length[6]|max_length[255]'
-        ],
-        [
-            'field' => 'confirmarSenha',
-            'label' => 'Confirme sua senha',
-            'rules' => 'required|matches[senha]'
-        ]
-    ]
 ];
