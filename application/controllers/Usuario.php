@@ -14,12 +14,10 @@ class Usuario extends MY_Controller
 
     public function index(): void
     {
-        $conteudo = $this->load->view('usuario/login', [] , true);
         $css = ['usuario/login/login'];
         $js = ['usuario/login/login'];
 
-        $this->load->view('template/template', [
-            'conteudo' => $conteudo,
+        $this->load->view('usuario/login', [
             'css' => $css,
             'js' => $js
         ]);

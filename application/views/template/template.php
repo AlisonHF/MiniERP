@@ -45,7 +45,7 @@
 
     
         <main>
-            <?= $conteudo ?? '' ?>
+            <?= $content ?? '' ?>
         </main>
     
     

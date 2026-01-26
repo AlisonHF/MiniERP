@@ -24,23 +24,13 @@ class MY_Controller extends CI_Controller
             ->set_output(json_encode($data));
     }
 
-    public function userAuthenticated()
+    public function checkAuth()
     {
-        if (
+        return (
             $this->session->has_userdata('usuario_id') &&
             $this->session->has_userdata('empresa_id') &&
             $this->session->has_userdata('tipo_usuario')
-        ) {
-            $this->user = [
-                'usuario_id' => $this->session->userdata('usuario_id') ?? null,
-                'empresa_id' => $this->session->userdata('empresa_id'),
-                'tipo_usuario' => $this->session->userdata('tipo_usuario'),
-            ];
-
-            return true;
-        }
-
-        return false;
+        );
     }
 
     public function getUser()
