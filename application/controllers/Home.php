@@ -10,22 +10,16 @@ class Home extends MY_Controller
     {
         parent::__construct();
 
-        if (!$this->session->userdata('usuario_id') ||
-            !$this->session->userdata('empresa_id') ||
-            !$this->session->userdata('tipo_usuario')
-        ) {
+        if (!$this->checkAuth()) {
             redirect(base_url() . 'usuario/');
         }
     }
 
     public function index()
     {
-        $conteudo = $this->load->view('home/index', [], true);
-
         $css = ['home/index/index'];
 
-        $this->load->view('template/template', [
-            'conteudo' => $conteudo,
+        $this->load->view('home/index', [
             'css' => $css,
             'user' => $this->getUser()
         ]);

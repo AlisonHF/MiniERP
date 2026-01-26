@@ -18,12 +18,10 @@ class Register extends MY_Controller
 
     public function index()
     {
-        $conteudo = $this->load->view('register/index', [], true);
         $css = ['register/index'];
         $js = ['register/index'];
 
-        $this->load->view('template/template', [
-            'conteudo' => $conteudo,
+        $this->load->view('register/index', [
             'css'      => $css,
             'js'       => $js
         ]);
