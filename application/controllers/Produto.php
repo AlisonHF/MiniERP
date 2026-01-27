@@ -57,7 +57,7 @@ class Produto extends MY_Controller
 
             return $this->outputJson([
                 'status'  => false,
-                'message' => 'Erro ao cadastrar empresa'
+                'message' => 'Erro ao cadastrar produto'
             ]);
         }
 
