@@ -21,7 +21,6 @@ class Home extends MY_Controller
 
         $this->load->view('home/index', [
             'css' => $css,
-            'user' => $this->getUser()
         ]);
     }
 }

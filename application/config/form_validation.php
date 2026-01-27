@@ -77,4 +77,31 @@ $config = [
             'rules' => 'required|exact_length[2]'
         ],
     ],
+    'produto/store' => [
+        [
+            'field' => 'codigo',
+            'label' => 'Código',
+            'rules' => 'required|max_length[20]|is_unique[produto.codigo]'
+        ],
+        [
+            'field' => 'descricao',
+            'label' => 'Descrição',
+            'rules' => 'required|max_length[255]'
+        ],
+        [
+            'field' => 'unidade',
+            'label' => 'Unidade',
+            'rules' => 'max_length[10]'
+        ],
+        [
+            'field' => 'preco',
+            'label' => 'Preço',
+            'rules' => 'decimal'
+        ],
+        [
+            'field' => 'imagem',
+            'label' => 'Imagem',
+            'rules' => 'max_size[2048]|is_image'
+        ],
+    ]
 ];
