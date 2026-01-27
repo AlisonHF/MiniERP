@@ -5,16 +5,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Controller extends CI_Controller
 {
-    private array $user;
+    private array|bool $user;
 
     public function __construct()
     {
         parent::__construct();
+
         $this->user = [
-            'usuario_id' => $this->session->userdata('usuario_id') ?? null,
-            'empresa_id' => $this->session->userdata('empresa_id') ?? null,
-            'tipo_usuario' => $this->session->userdata('tipo_usuario') ?? null,
+            'usuario_id' => $this->session->userdata('usuario_id') ?? '',
+            'empresa_id' => $this->session->userdata('empresa_id') ?? '',
+            'tipo_usuario' => $this->session->userdata('tipo_usuario') ?? '',
         ];
+
+        $this->user = array_filter($this->user) ? $this->user : false;
+
+        $this->load->vars([
+            'user' => $this->user
+        ]);
     }
 
     public function outputJson(array $data)
@@ -26,15 +33,11 @@ class MY_Controller extends CI_Controller
 
     public function checkAuth()
     {
-        return (
-            $this->session->has_userdata('usuario_id') &&
-            $this->session->has_userdata('empresa_id') &&
-            $this->session->has_userdata('tipo_usuario')
-        );
-    }
+        if ($this->user)
+        {
+            return true;
+        }
 
-    public function getUser()
-    {
-        return $this->user;
+        return false;
     }
 }
