@@ -18,6 +18,25 @@ class Produto extends MY_Controller
         $this->load->library('form_validation');
     }
 
+    public function index()
+    {
+        $this->load->library('pagination');
+        $this->load->helper('Render_pagination_helper');
+
+        $total_rows = $this->produto_model->countAll();
+        $per_page = 15;
+        $offset = (int) $this->uri->segment(2);
+
+        $links = Render_pagination_helper($total_rows, $per_page);
+
+        $data['links'] = $links;
+        $data['produtos'] = $this->produto_model->getPaginated($per_page, $offset);
+        $data['js'] = ['produto/index'];
+        $data['css'] = ['produto/index'];
+
+        $this->load->view('produto/index', $data);
+    }
+
     public function create()
     {
         $js = ['produto/create'];

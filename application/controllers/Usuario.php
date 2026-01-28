@@ -14,8 +14,8 @@ class Usuario extends MY_Controller
 
     public function index(): void
     {
-        $css = ['usuario/login/login'];
-        $js = ['usuario/login/login'];
+        $css = ['usuario/login'];
+        $js = ['usuario/login'];
 
         $this->load->view('usuario/login', [
             'css' => $css,

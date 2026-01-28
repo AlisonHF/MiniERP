@@ -12,6 +12,27 @@ class Produto_model extends CI_Model
         $this->load->database();
     }
 
+    public function getPaginated(int $limit, int $offset = 0)
+    {
+        return $this->db->select([
+            'id',
+            'codigo',
+            'descricao',
+            'unidade',
+            'preco',
+            'created_at']
+        )
+        ->from('produto')
+        ->limit($limit, $offset)
+        ->get()
+        ->result_array();
+    }
+
+    public function countAll()
+    {
+        return $this->db->count_all('produto');
+    }
+
     public function store(CreateProdutoDTO $createProdutoDTO)
     {
         try {
