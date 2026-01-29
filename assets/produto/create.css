@@ -3,7 +3,6 @@
     background-color: #1e1e1e;
 }
 
-/* CARD */
 .product-wrapper {
     width: 100%;
     max-width: 900px;
@@ -14,7 +13,6 @@
     box-shadow: 0 10px 26px rgba(0,0,0,.55);
 }
 
-/* HEADER */
 .product-header {
     text-align: left;
     color: #ffffff;
@@ -37,7 +35,6 @@
     opacity: .7;
 }
 
-/* PREVIEW IMAGEM */
 .image-preview {
     background-color: #1c1c1c;
     border: 1px dashed #3a3a3a;
@@ -54,12 +51,10 @@
     background-color: #000;
 }
 
-/* LABELS */
 .auth-form .form-label {
     color: #bdbdbd;
 }
 
-/* INPUTS */
 .auth-form .form-control {
     background-color: #2a2a2a;
     border: 1px solid #3a3a3a;
@@ -72,7 +67,7 @@
     box-shadow: 0 0 0 .15rem rgba(13,110,253,.35);
 }
 
-/* MOBILE */
+
 @media (max-width: 768px) {
     .product-wrapper {
         padding: 2rem 1.5rem;
