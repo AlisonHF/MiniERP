@@ -32,7 +32,7 @@
                             <i class="bi bi-box-seam display-6 mb-2"></i>
                             <h5 class="card-title">Produtos</h5>
                             <h2></h2>
-                            <a href="/produto" class="btn btn-outline-primary btn-sm mt-2">
+                            <a href="<?= base_url("produto") ?>" class="btn btn-outline-primary btn-sm mt-2">
                                 Gerenciar
                             </a>
                         </div>
@@ -62,7 +62,7 @@
                 <a href="#" class="btn btn-primary">
                     Novo cliente
                 </a>
-                <a href="/produto/create" class="btn btn-primary">
+                <a href="<?= base_url('produto/create') ?>" class="btn btn-primary">
                     Novo Produto
                 </a>
                 <a href="#" class="btn btn-secondary">

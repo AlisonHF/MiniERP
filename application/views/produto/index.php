@@ -2,7 +2,9 @@
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
             <div class="page-header mb-3">
-                <h1>Lista de Produtos</h1>
+                <h1>
+                    <i class="bi bi-box-seam"></i> Lista de Produtos
+                </h1>
                 <a href="<?= base_url('produto/create') ?>" class="btn btn-primary">
                     <i class="bi bi-plus-lg"></i>
                     Novo Produto
@@ -17,6 +19,7 @@
                     <span>Unidade</span>
                     <span>Preço</span>
                     <span>Criado em</span>
+                    <span>Ações</span>
                 </div>
 
                 <div class="product-list-body">
@@ -42,6 +45,9 @@
                                 </span>
                                 <span class="date">
                                     <?= date('d/m/Y', strtotime($produto['created_at'])) ?>
+                                </span>
+                                <span>
+                                    
                                 </span>
                             </div>
                         <?php endforeach; ?>
