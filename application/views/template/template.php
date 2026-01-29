@@ -45,11 +45,9 @@
             </div>
         </nav>
 
-    
         <main>
             <?= $content ?? '' ?>
         </main>
-    
     
         <footer class="bg-dark text-white text-center py-3">
             <p>&copy; 2025 WorkUp. Todos os direitos reservados.</p>

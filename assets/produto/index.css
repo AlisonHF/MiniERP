@@ -47,7 +47,7 @@ body {
 
 .product-list-header {
     display: grid;
-    grid-template-columns: 3fr 1.5fr 1fr 1.2fr 1.5fr;
+    grid-template-columns: 3fr 1.5fr 1fr 1.2fr 1.5fr 1.5fr 80px;
     background-color: #1f1f1f;
     padding: 1rem 1.5rem;
     font-weight: 600;
@@ -63,7 +63,7 @@ body {
 
 .product-row {
     display: grid;
-    grid-template-columns: 3fr 1.5fr 1fr 1.2fr 1.5fr;
+    grid-template-columns: 3fr 1.5fr 1fr 1.2fr 1.5fr 1.5fr 80px;
     align-items: center;
     padding: 1rem 1.5rem;
     height: 64px;
