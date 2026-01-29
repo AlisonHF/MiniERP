@@ -30,13 +30,12 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/produto">Produtos</a>
-                        </li>
-
-                    </ul>
                     <?php if (isset($user) && !empty($user)): ?>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="<?= base_url("produto") ?>">Produtos</a>
+                            </li>
+                        </ul>
                         <div class="ms-auto">
                             <a class="text-primary" href="<?= base_url() . 'usuario/logout' ?>" style="text-decoration: none;">Sair</a>
                         </div>
