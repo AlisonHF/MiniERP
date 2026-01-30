@@ -11,19 +11,22 @@ class CreateProdutoDTO
     private ?string $unidade;
     private ?float $preco;
     private ?string $image;
+    private int $id_empresa;
 
     public function __construct(
         string $codigo,
         string $descricao,
         ?string $unidade,
         ?float $preco,
-        ?string $image
+        ?string $image,
+        int $id_empresa
     ) {
         $this->codigo = $codigo;
         $this->descricao = $descricao;
         $this->unidade = $unidade;
         $this->preco = $preco;
         $this->image = $image;
+        $this->id_empresa = $id_empresa;
     }
 
     public function getCodigo(): string
@@ -86,6 +89,18 @@ class CreateProdutoDTO
         return $this;
     }
 
+    public function getIdEmpresa(): int
+    {
+        return $this->id_empresa;
+    }
+
+    public function setIdEmpresa(int $id_empresa)
+    {
+        $this->id_empresa = $id_empresa;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         return [
@@ -94,6 +109,7 @@ class CreateProdutoDTO
             'unidade' => $this->unidade,
             'preco' => $this->preco,
             'imagem' => $this->image,
+            'id_empresa' => $this->id_empresa,
         ];
     }
 }

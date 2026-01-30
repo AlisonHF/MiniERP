@@ -12,7 +12,7 @@ class Produto_model extends CI_Model
         $this->load->database();
     }
 
-    public function getPaginated(int $limit, int $offset = 0)
+    public function getPaginated(int $limit, int $offset = 0, int $empresaId)
     {
         return $this->db->select([
             'id',
@@ -23,14 +23,17 @@ class Produto_model extends CI_Model
             'created_at']
         )
         ->from('produto')
+        ->where('empresa_id', $empresaId)
         ->limit($limit, $offset)
         ->get()
         ->result_array();
     }
 
-    public function countAll()
+    public function countAll(int $empresaId)
     {
-        return $this->db->count_all('produto');
+        $this->db->from('produto');
+        $this->db->where('empresa_id', $empresaId);
+        return $this->db->count_all_results();
     }
 
     public function store(CreateProdutoDTO $createProdutoDTO)
