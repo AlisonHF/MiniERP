@@ -40,4 +40,9 @@ class MY_Controller extends CI_Controller
 
         return false;
     }
+
+    public function getEmpresaiD()
+    {
+        return (int) $this->user['empresa_id'];
+    }
 }

@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Produto extends MY_Controller
 {
+    private int $empresaId;
     public function __construct()
     {
         parent::__construct();
@@ -23,14 +24,14 @@ class Produto extends MY_Controller
         $this->load->library('pagination');
         $this->load->helper('Render_pagination_helper');
 
-        $total_rows = $this->produto_model->countAll();
+        $total_rows = $this->produto_model->countAll($this->getEmpresaiD());
         $per_page = 15;
         $offset = (int) $this->uri->segment(2);
 
         $links = Render_pagination_helper($total_rows, $per_page);
 
         $data['links'] = $links;
-        $data['produtos'] = $this->produto_model->getPaginated($per_page, $offset);
+        $data['produtos'] = $this->produto_model->getPaginated($per_page, $offset, $this->getEmpresaiD());
         $data['js'] = ['produto/index'];
         $data['css'] = ['produto/index'];
 
@@ -64,7 +65,8 @@ class Produto extends MY_Controller
             $produtos['descricao'],
             $produtos['unidade'] ?? null,
             (float) $produtos['preco'] ?? null,
-            $produtos['image'] ?? null
+            $produtos['image'] ?? null,
+            $this->empresaId
         );
 
         $this->db->trans_begin();
