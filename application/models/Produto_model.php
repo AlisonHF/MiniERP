@@ -23,7 +23,7 @@ class Produto_model extends CI_Model
             'created_at']
         )
         ->from('produto')
-        ->where('empresa_id', $empresaId)
+        ->where('id_empresa', $empresaId)
         ->limit($limit, $offset)
         ->get()
         ->result_array();
@@ -32,7 +32,7 @@ class Produto_model extends CI_Model
     public function countAll(int $empresaId)
     {
         $this->db->from('produto');
-        $this->db->where('empresa_id', $empresaId);
+        $this->db->where('id_empresa', $empresaId);
         return $this->db->count_all_results();
     }
 
