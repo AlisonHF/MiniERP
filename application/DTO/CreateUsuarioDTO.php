@@ -8,7 +8,7 @@ class CreateUsuarioDTO
     private string $email;
     private string $senha;
     private ?int $tipoUsuario = null;
-    private ?int $empresa = null;
+    private ?int $id_empresa = null;
 
     public function __construct(string $nome, string $email, string $senha, $tipoUsuario = null, $empresa = null)
     {
@@ -16,7 +16,7 @@ class CreateUsuarioDTO
         $this->email = $email;
         $this->senha = $senha;
         $this->tipoUsuario = $tipoUsuario;
-        $this->empresa = $empresa;
+        $this->id_empresa = $empresa;
     }
 
     public function getNome(): string
@@ -65,12 +65,12 @@ class CreateUsuarioDTO
 
     public function getEmpresa()
     {
-        return $this->empresa;
+        return $this->id_empresa;
     }
 
     public function setEmpresa(int $empresa)
     {
-        $this->empresa = $empresa;
+        $this->id_empresa = $empresa;
         return $this;
     }
 
@@ -81,7 +81,7 @@ class CreateUsuarioDTO
             'email' => $this->email,
             'senha' => $this->senha,
             'tipo_usuario' => $this->tipoUsuario,
-            'empresa' => $this->empresa,
+            'id_empresa' => $this->id_empresa,
         ];
     }
 }

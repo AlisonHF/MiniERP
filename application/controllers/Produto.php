@@ -6,7 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Produto extends MY_Controller
 {
-    private int $empresaId;
     public function __construct()
     {
         parent::__construct();
@@ -66,7 +65,7 @@ class Produto extends MY_Controller
             $produtos['unidade'] ?? null,
             (float) $produtos['preco'] ?? null,
             $produtos['image'] ?? null,
-            $this->empresaId
+            $this->getEmpresaiD()
         );
 
         $this->db->trans_begin();
