@@ -88,4 +88,39 @@ class Produto extends MY_Controller
             'message' => 'Produto cadastrado com sucesso!'
         ]);
     }
+
+    public function test()
+    {
+        $this->load->library('pagination');
+        $this->load->helper('Render_pagination_helper');
+
+        $total_rows = $this->produto_model->countAll($this->getEmpresaiD());
+        $per_page = 15;
+        $offset = (int) $this->uri->segment(2);
+
+        $links = Render_pagination_helper($total_rows, $per_page);
+
+        $data['links'] = $links;
+        $data['data'] = $this->produto_model->getPaginated($per_page, $offset, $this->getEmpresaiD());
+        $data['actions'] = [
+            [
+                'url' => '#',
+                'class' => 'primary',
+                'icon' => 'bi-pencil-square'
+            ],
+            [
+                'url' => '#',
+                'class' => 'danger',
+                'icon' => 'bi-trash'
+            ],
+            [
+                'url' => '#',
+                'class' => 'secondary',
+                'icon' => 'bi-eye'
+            ],
+
+        ];
+
+        $this->load->view('template/list', $data);
+    }
 }

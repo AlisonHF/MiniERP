@@ -29,3 +29,151 @@ footer {
     display: flex;
     flex-direction: column;
 }
+
+/* List */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.list-page,
+.list-wrapper {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.list-header,
+.list-row {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.list-row span,
+.list-header div {
+    min-width: 0;
+}
+
+.list-page {
+    padding: 2rem 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.list-wrapper {
+    background-color: #252525;
+    border: 1px solid #2f2f2f;
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 420px;
+}
+
+.list-header {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    background-color: #1f1f1f;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: .9rem;
+    color: #cfcfcf;
+    border-bottom: 1px solid #333;
+}
+
+.list-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-row {
+    display: grid;
+    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    align-items: center;
+    padding: 1rem 1.5rem;
+    height: 64px;
+    color: #e5e5e5;
+    border-bottom: 1px solid #2f2f2f;
+    transition: background-color .2s;
+}
+
+.list-row > .actions {
+    display: flex;
+    gap: 5px;
+    width: auto;
+}
+
+.list-row:hover {
+    background-color: #2a2a2a;
+}
+
+.list-row .desc {
+    font-weight: 500;
+}
+
+.list-row .price {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.list-row .date {
+    font-size: .85rem;
+    opacity: .7;
+}
+
+.empty-row {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+}
+
+.list-footer {
+    display: flex;
+    justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+    .list-header {
+        display: none;
+    }
+
+    .list-row {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: .3rem;
+        padding: 1rem;
+    }
+
+    .list-row > .actions {
+        gap: 0px;
+    }
+
+    .list-row > .actions a  {
+        gap: 0px;
+        margin-right: 5px;
+    }
+
+    .list-row span::before {
+        content: attr(data-label);
+        font-size: .75rem;
+        opacity: .6;
+        display: block;
+    }
+
+    .list-page {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
