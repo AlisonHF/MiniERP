@@ -48,7 +48,7 @@ class Usuario extends MY_Controller
 
         $this->session->set_userdata([
             'usuario_id' => $usuario['id'],
-            'empresa_id' => $usuario['empresa'],
+            'empresa_id' => $usuario['id_empresa'],
             'tipo_usuario' => $usuario['tipo_usuario']
         ]);
 
