@@ -17,10 +17,6 @@ class Home extends MY_Controller
 
     public function index()
     {
-        $css = ['home/index/index'];
-
-        $this->load->view('home/index', [
-            'css' => $css,
-        ]);
+        $this->load->view('home/index');
     }
 }

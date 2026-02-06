@@ -31,21 +31,13 @@ class Produto extends MY_Controller
 
         $data['links'] = $links;
         $data['produtos'] = $this->produto_model->getPaginated($per_page, $offset, $this->getEmpresaiD());
-        $data['js'] = ['produto/index'];
-        $data['css'] = ['produto/index'];
 
         $this->load->view('produto/index', $data);
     }
 
     public function create()
     {
-        $js = ['produto/create'];
-        $css = ['produto/create'];
-
-        $this->load->view('produto/create', [
-            'css' => $css,
-            'js' => $js
-        ]);
+        $this->load->view('produto/create');
     }
 
     public function store()
@@ -98,12 +90,7 @@ class Produto extends MY_Controller
             return;
         }
 
-        $js = ['produto/create'];
-        $css = ['produto/create'];
-
         $this->load->view('produto/create', [
-            'css' => $css,
-            'js' => $js,
             'produto' => $produto
         ]);
     }
