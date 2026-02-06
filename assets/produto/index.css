@@ -103,6 +103,15 @@ body {
     justify-content: center;
 }
 
+.product-row > .actions {
+    display: flex;
+    gap: 5px;
+}
+
+.product-row > .actions > a {
+    width: 3rem;
+    height: 2rem;
+}
 
 @media (max-width: 768px) {
     .product-list-header {
@@ -116,6 +125,14 @@ body {
         padding: 1rem;
     }
 
+    .product-row > .actions {
+        gap: 0px;
+    }
+
+    .product-row > .actions > a {
+        margin-right: 5px;
+    }
+
     .product-row span::before {
         content: attr(data-label);
         font-size: .75rem;
@@ -127,4 +144,5 @@ body {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+    
 }

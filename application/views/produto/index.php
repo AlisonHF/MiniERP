@@ -46,8 +46,13 @@
                                 <span class="date">
                                     <?= date('d/m/Y', strtotime($produto['created_at'])) ?>
                                 </span>
-                                <span>
-                                    
+                                <span class="actions">
+                                    <a href="<?= base_url('produto/edit/' . $produto['id']) ?>" class="btn btn-sm btn-primary" title="Editar">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                        <a href="<?= base_url('produto/delete/' . $produto['id']) ?>" class="btn btn-sm btn-danger" title="Excluir">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
                                 </span>
                             </div>
                         <?php endforeach; ?>

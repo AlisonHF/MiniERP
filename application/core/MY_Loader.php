@@ -10,6 +10,7 @@ class MY_Loader extends CI_Loader
         // Caso houver alguma view que não utilizara o template padrão, colocar na lista
         $withoutTemplate = [
             'template/template',
+            
         ];
 
         if (in_array($view, $withoutTemplate)) {
