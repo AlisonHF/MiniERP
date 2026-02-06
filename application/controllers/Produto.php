@@ -88,4 +88,23 @@ class Produto extends MY_Controller
             'message' => 'Produto cadastrado com sucesso!'
         ]);
     }
+
+    public function edit(int $id)
+    {
+        $produto = $this->produto_model->getById($id);
+
+        if (!$produto) {
+            redirect(base_url() . 'produto/');
+            return;
+        }
+
+        $js = ['produto/create'];
+        $css = ['produto/create'];
+
+        $this->load->view('produto/create', [
+            'css' => $css,
+            'js' => $js,
+            'produto' => $produto
+        ]);
+    }
 }

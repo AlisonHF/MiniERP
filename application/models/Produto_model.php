@@ -45,4 +45,9 @@ class Produto_model extends CI_Model
             return $e->getMessage();
         }
     }
+
+    public function getById(int $id)
+    {
+        return $this->db->get_where('produto', ['id' => $id])->row_array();
+    }
 }

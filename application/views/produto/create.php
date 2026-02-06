@@ -3,7 +3,7 @@
 
         <div class="product-wrapper product-edit">
 
-            <form id="createForm" class="auth-form">
+            <form id="<?= isset($produto) ? 'edit' : 'create' ?>Form" class="auth-form">
                 <div class="row g-4">
 
                     <!-- PREVIEW DA IMAGEM -->
@@ -40,7 +40,7 @@
                                 class="form-control"
                                 id="codigo"
                                 name="codigo"
-                                value="<?= $produto->codigo ?? '' ?>"
+                                value="<?= $produto['codigo'] ?? '' ?>"
                                 required
                             >
                         </div>
@@ -52,7 +52,7 @@
                                 class="form-control"
                                 id="descricao"
                                 name="descricao"
-                                value="<?= $produto->descricao ?? '' ?>"
+                                value="<?= $produto['descricao'] ?? '' ?>"
                                 
                             >
                         </div>
@@ -62,10 +62,10 @@
                                 <label for="unidade" class="form-label">Unidade</label>
                                 <select class="form-control" id="unidade" name="unidade">
                                     <option value="">Selecione</option>
-                                    <option value="UN" <?= ($produto->unidade ?? '') === 'UN' ? 'selected' : '' ?>>Unidade</option>
-                                    <option value="KG" <?= ($produto->unidade ?? '') === 'KG' ? 'selected' : '' ?>>Kg</option>
-                                    <option value="LT" <?= ($produto->unidade ?? '') === 'LT' ? 'selected' : '' ?>>Litro</option>
-                                    <option value="CX" <?= ($produto->unidade ?? '') === 'CX' ? 'selected' : '' ?>>Caixa</option>
+                                    <option value="UN" <?= ($produto['unidade'] ?? '') === 'UN' ? 'selected' : '' ?>>Unidade</option>
+                                    <option value="KG" <?= ($produto['unidade'] ?? '') === 'KG' ? 'selected' : '' ?>>Kg</option>
+                                    <option value="LT" <?= ($produto['unidade'] ?? '') === 'LT' ? 'selected' : '' ?>>Litro</option>
+                                    <option value="CX" <?= ($produto['unidade'] ?? '') === 'CX' ? 'selected' : '' ?>>Caixa</option>
                                 </select>
                             </div>
 
@@ -76,7 +76,7 @@
                                     class="form-control"
                                     id="preco"
                                     name="preco"
-                                    value="<?= $produto->preco ?? '' ?>"
+                                    value="<?= $produto['preco'] ?? '' ?>"
                                 >
                             </div>
                         </div>

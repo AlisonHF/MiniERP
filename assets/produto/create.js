@@ -42,7 +42,7 @@ function validateForm(
     return true;
 }
 
-function sendForm()
+function sendForm(url)
 {
     let codigo = $('#codigo').val();
     let descricao = $('#descricao').val();
@@ -60,7 +60,7 @@ function sendForm()
     formData.append('unidade', unidade);
     formData.append('preco', preco);
 
-    fetch('/produto/store', {
+    fetch(`/produto/${url}`, {
         method: 'POST',
         body: formData,
     })
@@ -75,7 +75,12 @@ function sendForm()
                 html: messages,
             })
             .then(() => {
+                if (url == 'edit') {
+                    window.location.href = '/produto';
+                }
+                
                 window.location.href = '/produto/create';
+                
             })
         } else {
             Swal.fire({
@@ -97,5 +102,11 @@ function sendForm()
 $('#createForm').submit(function(e) {
     e.preventDefault();
 
-    sendForm();
+    sendForm('create');
+});
+
+$('#editForm').submit(function(e) {
+    e.preventDefault();
+
+    sendForm('edit');
 });
