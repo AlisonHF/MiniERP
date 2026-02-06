@@ -18,13 +18,7 @@ class Register extends MY_Controller
 
     public function index()
     {
-        $css = ['register/index'];
-        $js = ['register/index'];
-
-        $this->load->view('register/index', [
-            'css'      => $css,
-            'js'       => $js
-        ]);
+        $this->load->view('register/index');
     }
 
     public function store()

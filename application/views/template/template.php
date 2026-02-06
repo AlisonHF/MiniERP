@@ -12,7 +12,7 @@
 
     <?php if (!empty($css)): ?>
         <?php foreach ($css as $file): ?>
-            <link href="<?= base_url() . 'assets/' . $file . '.css' ?>" rel="stylesheet">
+            <link href="<?= base_url() . 'assets/'. $file . '.css'?>" rel="stylesheet">
         <?php endforeach; ?>
     <?php endif; ?>
     
