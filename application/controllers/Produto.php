@@ -64,12 +64,14 @@ class Produto extends MY_Controller
         if (!$produto) {
             $this->db->trans_rollback();
 
-            return $this->outputJson(['status'  => false, 'message' => 'Erro ao cadastrar produto!']);
+            $this->outputJson(['status'  => false, 'message' => 'Erro ao cadastrar produto!']);
+            return;
         }
 
         $this->db->trans_commit();
 
-        return $this->outputJson(['status'  => true, 'message' => 'Produto cadastrado com sucesso!']);
+        $this->outputJson(['status'  => true, 'message' => 'Produto cadastrado com sucesso!']);
+        return;
     }
 
     public function edit(int $id)
@@ -102,17 +104,41 @@ class Produto extends MY_Controller
             $this->getEmpresaiD(),
         );
 
-        $this->db->trans_commit();
-
         $update = $this->produto_model->update($updateProdutoDto);
 
+        $this->db->trans_commit();
+        
         if (!$update)
         {
             $this->db->trans_rollback();
 
-            return $this->outputJson(['status'  => false, 'message' => 'Erro ao editar o produto!']);
+            $this->outputJson(['status'  => false, 'message' => 'Erro ao editar o produto!']);
+            return;
         }
 
-        return $this->outputJson(['status'  => true, 'message' => 'Produto editado com sucesso!']);
+        $this->outputJson(['status'  => true, 'message' => 'Produto editado com sucesso!']);
+
+        return;
+    }
+
+    public function delete()
+    {
+        $id = (int) ($this->input->post())['id'];
+
+        $this->db->trans_begin();
+
+        $delete = $this->produto_model->delete($id, $this->getEmpresaiD());
+
+        if (!$delete)
+        {
+            $this->db->trans_rollback();
+
+            return $this->outputJson(['status'  => false, 'message' => 'Erro ao excluir o produto!']);
+        }
+
+        $this->db->trans_commit();
+
+        $this->outputJson(['status'  => true, 'message' => 'Produto excluído com sucesso!']);
+        return;
     }
 }

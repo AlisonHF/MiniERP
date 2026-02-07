@@ -50,7 +50,7 @@
                                     <a href="<?= base_url('produto/edit/' . $produto['id']) ?>" class="btn btn-sm btn-primary" title="Editar">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                        <a href="<?= base_url('produto/delete/' . $produto['id']) ?>" class="btn btn-sm btn-danger" title="Excluir">
+                                        <a href="#" id="<?= $produto['id'] ?>" class="btn btn-sm btn-danger delete" title="Excluir">
                                             <i class="bi bi-trash"></i>
                                         </a>
                                 </span>
