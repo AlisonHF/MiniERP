@@ -60,6 +60,12 @@ function sendForm(url)
     formData.append('unidade', unidade);
     formData.append('preco', preco);
 
+    if (url == 'update') {
+        let id = $('#id').val();
+
+        formData.append('id', id);
+    }
+
     fetch(`/produto/${url}`, {
         method: 'POST',
         body: formData,
@@ -71,12 +77,13 @@ function sendForm(url)
         if (data.status) {
             Swal.fire({
                 icon: 'success',
-                title: 'Sucesso!',
+                title: 'Sucesso',
                 html: messages,
             })
             .then(() => {
-                if (url == 'edit') {
+                if (url == 'update') {
                     window.location.href = '/produto';
+                    return;
                 }
                 
                 window.location.href = '/produto/create';
@@ -85,7 +92,7 @@ function sendForm(url)
         } else {
             Swal.fire({
                 icon: 'error',
-                title: 'Erro!',
+                title: 'Erro',
                 html: messages
             });
         }
@@ -93,7 +100,7 @@ function sendForm(url)
     .catch(error => {
         Swal.fire({
             icon: 'error',
-            title: 'Ocorreu um erro!',
+            title: 'Ocorreu uma falha',
             message: error
         });
     });
@@ -102,11 +109,11 @@ function sendForm(url)
 $('#createForm').submit(function(e) {
     e.preventDefault();
 
-    sendForm('create');
+    sendForm('store');
 });
 
 $('#editForm').submit(function(e) {
     e.preventDefault();
 
-    sendForm('edit');
+    sendForm('update');
 });

@@ -538,3 +538,6 @@ spl_autoload_register(function ($class) {
         require_once $path;
     }
 });
+
+/* Time zone */
+date_default_timezone_set('America/Sao_Paulo');

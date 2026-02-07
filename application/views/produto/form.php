@@ -6,7 +6,6 @@
             <form id="<?= isset($produto) ? 'edit' : 'create' ?>Form" class="auth-form">
                 <div class="row g-4">
 
-                    <!-- PREVIEW DA IMAGEM -->
                     <div class="col-md-4">
                         <div class="image-preview">
                             <img
@@ -25,13 +24,16 @@
                         </div>
                     </div>
 
-                    <!-- FORMULÁRIO -->
                     <div class="col-md-8">
                         <div class="product-header mb-4">
                             <i class="bi bi-box-seam"></i>
                             <h1><?= isset($produto) ? 'Editar produto' : 'Cadastrar produto' ?></h1>
                             <span>WorkUp</span>
                         </div>
+
+                        <?php if (isset($produto)): ?>
+                            <input id="id" name="id" value="<?= $produto['id'] ?>" hidden>
+                        <?php endif; ?>
 
                         <div class="mb-3">
                             <label for="codigo" class="form-label">Código</label>
