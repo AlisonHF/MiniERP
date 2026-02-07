@@ -73,7 +73,13 @@ class Produto_model extends CI_Model
         );
 
         return true;
+    }
 
+    public function delete(int $id, int $id_empresa)
+    {
+        $this->db->delete($this->table, ['id' => $id, 'id_empresa' => $id_empresa]);
+
+        return true;
     }
 
 }
