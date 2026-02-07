@@ -13,7 +13,7 @@ class MY_Controller extends CI_Controller
 
         $this->user = [
             'usuario_id' => $this->session->userdata('usuario_id') ?? '',
-            'empresa_id' => $this->session->userdata('empresa_id') ?? '',
+            'empresa_id' => $this->session->userdata('id_empresa') ?? '',
             'tipo_usuario' => $this->session->userdata('tipo_usuario') ?? '',
         ];
 

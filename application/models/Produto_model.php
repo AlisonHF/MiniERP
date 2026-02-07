@@ -6,10 +6,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Produto_model extends CI_Model
 {
+    private $table;
     public function __construct()
     {
         parent::__construct();
         $this->load->database();
+
+        $this->table = 'produto';
     }
 
     public function getPaginated(int $limit, int $offset = 0, int $empresaId)
@@ -22,7 +25,7 @@ class Produto_model extends CI_Model
             'preco',
             'created_at']
         )
-        ->from('produto')
+        ->from($this->table)
         ->where('id_empresa', $empresaId)
         ->limit($limit, $offset)
         ->get()
@@ -31,7 +34,7 @@ class Produto_model extends CI_Model
 
     public function countAll(int $empresaId)
     {
-        $this->db->from('produto');
+        $this->db->from($this->table);
         $this->db->where('id_empresa', $empresaId);
         return $this->db->count_all_results();
     }
@@ -39,7 +42,7 @@ class Produto_model extends CI_Model
     public function store(CreateProdutoDTO $createProdutoDTO)
     {
         try {
-            $this->db->insert('produto', $createProdutoDTO->toArray());
+            $this->db->insert($this->table, $createProdutoDTO->toArray());
             return $this->db->insert_id();
         } catch (Exception $e) {
             return $e->getMessage();
@@ -48,6 +51,29 @@ class Produto_model extends CI_Model
 
     public function getById(int $id)
     {
-        return $this->db->get_where('produto', ['id' => $id])->row_array();
+        return $this->db->get_where($this->table, ['id' => $id])->row_array();
     }
+
+    public function update(UpdateProdutoDTO $updateProdutoDto)
+    {
+        $this->db->update(
+            $this->table,
+            [
+                'codigo' => $updateProdutoDto->getCodigo(),
+                'descricao' => $updateProdutoDto->getDescricao(),
+                'unidade' => $updateProdutoDto->getUnidade(),
+                'preco' => $updateProdutoDto->getPreco(),
+                'imagem' => $updateProdutoDto->getImagem(),
+                'update_at' => $updateProdutoDto->getUpdateAt()
+            ],
+            [
+                'id_empresa' => $updateProdutoDto->getIdEmpresa(),
+                'id' => $updateProdutoDto->getId()
+            ]
+        );
+
+        return true;
+
+    }
+
 }
