@@ -12,24 +12,33 @@
                 </a>
             </div>
 
-            <form class="row mb-3">
+            <form class="row mb-3" method="post" action="<?= base_url('produto/index') ?>">
                 <div class="col-md-3">
-                    <label class="form-label">Código</label>
-                    <input class="form-control">
+                    <label class="form-label" for="descricao">Descrição</label>
+                    <input class="form-control" id="descricao" name="descricao">
                 </div>
                 
                 <div class="col-md-3">
-                    <label class="form-label">Descrição</label>
-                    <input class="form-control">
+                    <label class="form-label" for="codigo">Código</label>
+                    <input class="form-control" id="codigo" name="codigo">
+                </div>
+                
+                <div class="col-md-1">
+                    <label class="form-label" for="limite">Limite</label>
+                    <select class="form-control" id="limite" name="limite">
+                        <?php for ($i = 15; $i <= 100; $i += 15): ?>
+                            <option value="<?= $i ?>"><?= $i ?></option>
+                        <?php endfor; ?>
+                    </select>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     &nbsp;
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-2" >
                     <label>&nbsp;</label>
-                    <button type="submit" class="btn btn-primary w-100 ">
+                    <button type="submit" class="btn btn-primary w-100">
                         <i class="bi bi-search"></i> Buscar
                     </button>
                 </div>

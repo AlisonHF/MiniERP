@@ -97,7 +97,12 @@
     justify-content: center;
 }
 
-/* Responsivo */
+.auth-page .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
 @media (max-width: 768px) {
     .page-header {
         flex-direction: column;

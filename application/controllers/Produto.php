@@ -23,14 +23,26 @@ class Produto extends MY_Controller
         $this->load->library('pagination');
         $this->load->helper('Render_pagination_helper');
 
-        $total_rows = $this->produto_model->countAll($this->getEmpresaiD());
-        $per_page = 15;
+        $params = $this->input->post();
+        
+        $like = [];
+        
+        if (!empty($params['codigo'])) {
+            $like['codigo'] = $params['codigo'];
+        }
+
+        if (!empty($params['descricao'])) {
+            $like['descricao'] = $params['descricao'];
+        }
+
+        $total_rows = $this->produto_model->countAll($this->getEmpresaiD(), $like);
+        $per_page = isset($params['limite']) ? (int) $params['limite'] : 15;
         $offset = (int) $this->uri->segment(2);
 
         $links = render_pagination_helper($total_rows, $per_page);
 
         $data['links'] = $links;
-        $data['produtos'] = $this->produto_model->getPaginated($per_page, $offset, $this->getEmpresaiD());
+        $data['produtos'] = $this->produto_model->getPaginated($per_page, $offset, $this->getEmpresaiD(), $like);
 
         $this->load->view('produto/index', $data);
     }
