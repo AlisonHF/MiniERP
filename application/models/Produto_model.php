@@ -15,7 +15,7 @@ class Produto_model extends CI_Model
         $this->table = 'produto';
     }
 
-    public function getPaginated(int $limit, int $offset = 0, int $empresaId)
+    public function getPaginated(int $limit, int $offset = 0, int $empresaId, array $like = [])
     {
         return $this->db->select([
             'id',
@@ -27,15 +27,17 @@ class Produto_model extends CI_Model
         )
         ->from($this->table)
         ->where('id_empresa', $empresaId)
+        ->like($like)
         ->limit($limit, $offset)
         ->get()
         ->result_array();
     }
 
-    public function countAll(int $empresaId)
+    public function countAll(int $empresaId, array $like = [])
     {
         $this->db->from($this->table);
         $this->db->where('id_empresa', $empresaId);
+        $this->db->like($like);
         return $this->db->count_all_results();
     }
 
