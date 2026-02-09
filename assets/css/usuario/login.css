@@ -28,22 +28,6 @@
     margin-bottom: 0;
 }
 
-.auth-form .form-label {
-    color: #bdbdbd;
-}
-
-.auth-form .form-control {
-    background-color: #2a2a2a;
-    border: 1px solid #3a3a3a;
-    color: #ffffff;
-}
-
-.auth-form .form-control:focus {
-    background-color: #2a2a2a;
-    border-color: #0d6efd;
-    box-shadow: 0 0 0 .15rem rgba(13,110,253,.35);
-}
-
 #link-create {
     display: block;
     text-align: center;

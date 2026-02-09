@@ -1,20 +1,17 @@
 <div class="container-fluid empresa-create">
     <div class="row h-100">
 
-        <!-- LADO ESQUERDO -->
         <div class="col-md-3 left-divisor d-flex flex-column justify-content-center align-items-center">
             <i class="bi bi-person-badge"></i>
             <h1>Cadastro</h1>
             <span>Conta & Empresa</span>
         </div>
 
-        <!-- LADO DIREITO -->
         <div class="col-md-9 right-divisor d-flex justify-content-center align-items-center">
             
             <div class="form-wrapper">
                 <form id="createForm" class="empresa-form">
 
-                    <!-- DADOS DO USUÁRIO -->
                     <fieldset>
                         <legend class="section-divider">
                             <span>Dados do Usuário</span>
@@ -47,7 +44,6 @@
                         </div>
                     </fieldset>
 
-                    <!-- DADOS DA EMPRESA -->
                     <fieldset>
                         <legend class="section-divider">
                             <span>Dados da Empresa</span>
@@ -78,7 +74,6 @@
                         </div>
                     </fieldset>
 
-                    <!-- ENDEREÇO -->
                     <fieldset>
                         <legend class="section-divider">
                             <span>Endereço</span>
