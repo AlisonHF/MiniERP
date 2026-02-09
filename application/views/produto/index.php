@@ -12,6 +12,32 @@
                 </a>
             </div>
 
+            <form class="row mb-3">
+                <div class="col-md-3">
+                    <label class="form-label">Código</label>
+                    <input class="form-control">
+                </div>
+                
+                <div class="col-md-3">
+                    <label class="form-label">Descrição</label>
+                    <input class="form-control">
+                </div>
+
+                <div class="col-md-4">
+                    &nbsp;
+                </div>
+
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100 ">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                </div>
+
+            </form>
+
+            <hr/>
+
             <div class="product-list-wrapper">
                 <div class="product-list-header">
                     <span>Descrição</span>
