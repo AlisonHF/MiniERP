@@ -23,6 +23,8 @@ class Register extends MY_Controller
 
     public function store()
     {
+        $this->onlyPost();
+
         $data = $this->input->post();
 
         if (!$this->form_validation->run('register/')) {
