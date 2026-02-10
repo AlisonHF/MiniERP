@@ -41,7 +41,7 @@ class Usuario extends MY_Controller
         }
 
         $this->session->set_userdata([
-            'usuario_id' => $usuario['id'],
+            'id_usuario' => $usuario['id'],
             'id_empresa' => $usuario['id_empresa'],
             'tipo_usuario' => $usuario['tipo_usuario']
         ]);
@@ -56,8 +56,8 @@ class Usuario extends MY_Controller
 
     public function logout()
     {
-        $this->session->unset_userdata('usuario_id');
-        $this->session->unset_userdata('empresa_id');
+        $this->session->unset_userdata('id_usuario');
+        $this->session->unset_userdata('id_empresa');
         $this->session->unset_userdata('tipo_usuario');
 
         $this->session->sess_regenerate();

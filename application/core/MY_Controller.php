@@ -12,8 +12,8 @@ class MY_Controller extends CI_Controller
         parent::__construct();
 
         $this->user = [
-            'usuario_id' => $this->session->userdata('usuario_id') ?? '',
-            'empresa_id' => $this->session->userdata('id_empresa') ?? '',
+            'id_usuario' => $this->session->userdata('id_usuario') ?? '',
+            'id_empresa' => $this->session->userdata('id_empresa') ?? '',
             'tipo_usuario' => $this->session->userdata('tipo_usuario') ?? '',
         ];
 
@@ -44,5 +44,18 @@ class MY_Controller extends CI_Controller
     public function getEmpresaiD()
     {
         return (int) $this->user['empresa_id'];
+    }
+
+    protected function onlyPost(): void
+    {
+        if ($this->input->method() !== 'post') {
+            if ($this->checkAuth()) {
+                redirect('home');
+                exit;
+            }
+
+            redirect('usuario');
+            exit;
+        }
     }
 }
