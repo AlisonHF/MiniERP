@@ -19,6 +19,8 @@ class Usuario extends MY_Controller
 
     public function login()
     {
+        $this->onlyPost();
+
         $data = $this->input->post();
 
         $email = $data['email'];

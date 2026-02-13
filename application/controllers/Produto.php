@@ -54,6 +54,8 @@ class Produto extends MY_Controller
 
     public function store()
     {
+        $this->onlyPost();
+
         $produtos = $this->input->post();
 
         if (!$this->form_validation->run('produto/store')) {
@@ -100,6 +102,8 @@ class Produto extends MY_Controller
 
     public function update()
     {
+        $this->onlyPost();
+
         $produto = $this->input->post();
 
         if (!$this->form_validation->run('produto/update')) {
@@ -135,6 +139,8 @@ class Produto extends MY_Controller
 
     public function delete()
     {
+        $this->onlyPost();
+
         $id = (int) ($this->input->post())['id'];
 
         $this->db->trans_begin();

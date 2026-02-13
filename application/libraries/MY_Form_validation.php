@@ -9,7 +9,7 @@ class MY_Form_validation extends CI_Form_validation
     /**
      * Params:
      * tabela.campo.idCampo.empresaCampo
-     * Ex: produtos.nome.id.empresa_id
+     * Ex: produtos.nome.id.id_empresa
      */
     public function unique_field(string $value, string $params): bool
     {

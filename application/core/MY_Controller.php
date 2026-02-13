@@ -43,7 +43,7 @@ class MY_Controller extends CI_Controller
 
     public function getEmpresaiD()
     {
-        return (int) $this->user['empresa_id'];
+        return (int) $this->user['id_empresa'];
     }
 
     protected function onlyPost(): void
