@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario_model extends CI_Model
+class Auth_model extends CI_Model
 {
     public function __construct()
     {
