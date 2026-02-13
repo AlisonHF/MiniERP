@@ -11,7 +11,7 @@ class Produto extends MY_Controller
         parent::__construct();
 
         if (!$this->checkAuth()) {
-            redirect(base_url() . 'usuario/');
+            redirect(base_url() . 'auth/');
         }
 
         $this->load->model('Produto_model', 'produto_model');

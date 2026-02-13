@@ -37,7 +37,7 @@
                             </li>
                         </ul>
                         <div class="ms-auto">
-                            <a class="text-primary" href="<?= base_url() . 'usuario/logout' ?>" style="text-decoration: none;">Sair</a>
+                            <a class="text-primary" href="<?= base_url() . 'auth/logout' ?>" style="text-decoration: none;">Sair</a>
                         </div>
                     <?php endif; ?>
                 </div>

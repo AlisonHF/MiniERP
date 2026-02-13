@@ -10,14 +10,19 @@ class Register extends MY_Controller
     {
         parent::__construct();
 
-        $this->load->model('usuario_model');
-        $this->load->model('empresa_model');
+        $this->load->model('Auth_model');
+        $this->load->model('Empresa_model');
 
         $this->load->library('form_validation');
     }
 
     public function index()
     {
+        if ($this->checkAuth())
+        {
+            redirect(base_url() . 'home/');
+        }
+
         $this->load->view('register/index');
     }
 
@@ -49,7 +54,7 @@ class Register extends MY_Controller
             $data['uf']
         );
 
-        $empresaId = $this->empresa_model->store($createEmpresaDto);
+        $empresaId = $this->Empresa_model->store($createEmpresaDto);
 
         if (!$empresaId) {
             $this->db->trans_rollback();
@@ -70,7 +75,7 @@ class Register extends MY_Controller
             $empresaId // vínculo
         );
 
-        $usuarioId = $this->usuario_model->store($createUsuarioDto);
+        $usuarioId = $this->Auth_model->store($createUsuarioDto);
 
         if (!$usuarioId) {
             $this->db->trans_rollback();

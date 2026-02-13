@@ -36,7 +36,7 @@ function sendForm()
         formData.append('email', email);
         formData.append('senha', senha);
 
-        fetch('/usuario/login', {
+        fetch('/auth/login', {
             method: 'post',
             body: formData
         })
