@@ -36,6 +36,11 @@
                                 <a class="nav-link" aria-current="page" href="<?= base_url("produto") ?>">Produtos</a>
                             </li>
                         </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="<?= base_url("usuario") ?>">Usuários</a>
+                            </li>
+                        </ul>
                         <div class="ms-auto">
                             <a class="text-primary" href="<?= base_url() . 'auth/logout' ?>" style="text-decoration: none;">Sair</a>
                         </div>
