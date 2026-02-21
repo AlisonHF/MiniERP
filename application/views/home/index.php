@@ -45,7 +45,7 @@
                             <i class="bi bi-person-badge display-6 mb-2"></i>
                             <h5 class="card-title">Usuários</h5>
                             <h2></h2>
-                            <a href="#" class="btn btn-outline-primary btn-sm mt-2">
+                            <a href="<?= base_url("usuario") ?>" class="btn btn-outline-primary btn-sm mt-2">
                                 Gerenciar
                             </a>
                         </div>
