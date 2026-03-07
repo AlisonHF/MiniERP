@@ -8,6 +8,7 @@
                     <div class="user-header mb-2">
                         <i class="bi bi-person"></i>
                         <h1><?= isset($usuario) ? 'Editar usuário' : 'Cadastrar usuário' ?></h1>
+                        <hr/>
                     </div>
 
                     <?php if (isset($usuario)): ?>
@@ -20,6 +21,7 @@
                             type="text"
                             class="form-control"
                             name="nome"
+                            id="nome"
                             value="<?= $usuario['nome'] ?? '' ?>"
                             required
                         >
@@ -31,23 +33,22 @@
                             type="email"
                             class="form-control"
                             name="email"
+                            id="email"
                             value="<?= $usuario['email'] ?? '' ?>"      
                         >
                     </div>
 
                     <div>
                         <label for="senha" class="form-label">Senha</label>
-                        <input type="password" name="senha" class="form-control">
+                        <input type="password" id="senha" name="senha" class="form-control">
                     </div>
 
                     <div>
                         <label for="tipo" class="form-label">Tipo usuário</label>
-                        <select name="tipo" class="form-control">
-                            <option selected>Selecione</option>
-                        </select>
+                        <input id="tipo" name="tipo" class="form-control">
                     </div>
 
-                    <div>
+                    <div class="mt-5">
                         <button type="submit" class="btn btn-primary w-100 form-control">
                             <?= isset($usuario) ? 'Salvar alterações' : 'Cadastrar usuário' ?>
                         </button>

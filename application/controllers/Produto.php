@@ -39,7 +39,7 @@ class Produto extends MY_Controller
         $per_page = isset($params['limite']) ? (int) $params['limite'] : 15;
         $offset = (int) $this->uri->segment(2);
 
-        $links = render_pagination_helper($total_rows, $per_page);
+        $links = render_pagination_helper($total_rows, $per_page, 'produto');
 
         $data['links'] = $links;
         $data['produtos'] = $this->produto_model->getPaginated($per_page, $offset, $this->getEmpresaiD(), $like);

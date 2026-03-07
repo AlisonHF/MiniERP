@@ -10,7 +10,7 @@ class Auth extends MY_Controller
     {
         parent::__construct();
 
-        $this->load->model('Auth_model');
+        $this->load->model('Usuario_model');
     }
 
     public function index(): void
@@ -32,7 +32,7 @@ class Auth extends MY_Controller
         $email = $data['email'];
         $senha = $data['senha'];
 
-        $usuario = $this->Auth_model->get_by_email($email);
+        $usuario = $this->Usuario_model->get_by_email($email);
 
         if (!$usuario) {
             return $this->outputJson([

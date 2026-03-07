@@ -13,13 +13,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @return string Links que são necessários implementar na view
  */
 if (!function_exists('render_pagination_helper')) {
-	function render_pagination_helper(int $total_rows, int $per_page)
+	function render_pagination_helper(int $total_rows, int $per_page, $uri)
 	{
 		$CI = &get_instance();
 		$CI->load->library('pagination');
 
 		// Config paginacao
-		$config['base_url'] = site_url('produto');
+		$config['base_url'] = site_url($uri);
 		$config['total_rows'] = $total_rows;
 		$config['per_page'] = $per_page;
 

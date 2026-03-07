@@ -10,7 +10,7 @@ class Register extends MY_Controller
     {
         parent::__construct();
 
-        $this->load->model('Auth_model');
+        $this->load->model('Usuario_model');
         $this->load->model('Empresa_model');
 
         $this->load->library('form_validation');
@@ -72,10 +72,10 @@ class Register extends MY_Controller
             $data['email'],
             $hashSenha,
             1,
-            $empresaId // vínculo
+            $empresaId
         );
 
-        $usuarioId = $this->Auth_model->store($createUsuarioDto);
+        $usuarioId = $this->Usuario_model->store($createUsuarioDto);
 
         if (!$usuarioId) {
             $this->db->trans_rollback();

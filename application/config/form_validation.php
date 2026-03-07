@@ -120,5 +120,27 @@ $config = [
             'label' => 'Imagem',
             'rules' => 'max_size[2048]'
         ],
+    ],
+    'usuario/store' => [
+        [
+            'field' => 'nome',
+            'label' => 'Nome',
+            'rules' => 'required|min_length[3]|max_length[100]'
+        ],
+        [
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|valid_email|is_unique[usuario.email]'
+        ],
+        [
+            'field' => 'senha',
+            'label' => 'Senha',
+            'rules' => 'required|min_length[6]|max_length[255]'
+        ],
+        [
+            'field' => 'tipo',
+            'label' => 'Tipo usuário',
+            'rules' => 'required'
+        ],
     ]
 ];

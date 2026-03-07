@@ -54,24 +54,25 @@
                 </div>
 
                 <div class="user-list-body">
-                    
-                        <!-- <div class="empty-row">
-                            Nenhum usuário cadastrado
-                        </div> -->
-                    
+                    <?php if(empty($usuarios)): ?>
+                        <div class="empty-row">
+                            Isso não deveria ter acontecido, entre em contato com o suporte técnico!
+                        </div>
+                    <?php else: ?>
+                        <?php foreach ($usuarios as $usuario): ?>
                             <div class="user-row">
                                 <span class="desc" data-label="Nome">
-   
+                                    <?= $usuario['nome'] ?>
                                 </span>
                                 <span data-label="E-mail">
-                                  
+                                    <?= $usuario['email'] ?>
                                 </span>
                                 <span data-label="Tipo de usuário">
-                               
+                                    <?= $usuario['tipo_usuario'] ?>
                                 </span>
                             
                                 <span class="date" data-label="Criado em">
-
+                                    <?= date('d/m/Y', strtotime($usuario['created_at'])) ?>
                                 </span>
                                 <span class="actions" data-label="Ações">
                                     <a href="#" class="btn btn-sm btn-primary" title="Editar">
@@ -82,12 +83,13 @@
                                     </a>
                                 </span>
                             </div>
-
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
 
             <div class="list-footer mt-3">
-
+                <?= $links ?>
             </div>
 
         </div>
