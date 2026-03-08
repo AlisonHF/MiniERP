@@ -20,13 +20,14 @@ class Usuario_model extends CI_Model
     {
         try {
             return $this->db->select([
-                'id',
+                'usuario.id',
                 'nome',
                 'email',
-                'tipo_usuario',
+                'tipo_usuario.descricao',
                 'created_at'
             ])
             ->from($this->table)
+            ->join('tipo_usuario', 'usuario.tipo_usuario = tipo_usuario.id')
             ->where('id_empresa', $idEmpresa)
             ->like($like)
             ->limit($limit, $offset)
@@ -55,8 +56,55 @@ class Usuario_model extends CI_Model
         }
     }
 
-    public function get_by_email($email)
+    public function getByEmail(string $email)
     {
         return $this->db->get_where($this->table, ['email' => $email])->row_array();
+    }
+
+    public function getById(int $id)
+    {
+        return $this->db->select([
+            'id',
+            'nome',
+            'email',
+            'senha',
+            'tipo_usuario'
+        ])
+        ->from($this->table)
+        ->where('id', $id)
+        ->get()
+        ->row_array();
+    }
+
+    public function update(UpdateUsuarioDTO $updateUsuarioDTO)
+    {
+        if ($updateUsuarioDTO->getSenha()) {
+            $this->db->update(
+                $this->table,
+                [
+                    'nome' => $updateUsuarioDTO->getNome(),
+                    'email' => $updateUsuarioDTO->getEmail(),
+                    'senha' => $updateUsuarioDTO->getSenha(),
+                    'tipo_usuario' => $updateUsuarioDTO->getTipoUsuario(),
+                ],
+                [
+                    'id' => $updateUsuarioDTO->getId()
+                ]
+            );
+        } else {
+            $this->db->update(
+                $this->table,
+                [
+                    'nome' => $updateUsuarioDTO->getNome(),
+                    'email' => $updateUsuarioDTO->getEmail(),
+                    'tipo_usuario' => $updateUsuarioDTO->getTipoUsuario(),
+                ],
+                [
+                    'id' => $updateUsuarioDTO->getId()
+                ]
+            );
+        }
+
+        return true;
     }
 }

@@ -121,8 +121,6 @@ class Produto extends MY_Controller
         );
 
         $update = $this->produto_model->update($updateProdutoDto);
-
-        $this->db->trans_commit();
         
         if (!$update)
         {
@@ -131,6 +129,8 @@ class Produto extends MY_Controller
             $this->outputJson(['status'  => false, 'message' => 'Erro ao editar o produto!']);
             return;
         }
+
+        $this->db->trans_commit();
 
         $this->outputJson(['status'  => true, 'message' => 'Produto editado com sucesso!']);
 

@@ -15,6 +15,9 @@ class Usuario extends MY_Controller
         }
 
         $this->load->model('Usuario_model');
+        $this->load->model('TipoUsuario_model');
+
+        $this->load->library('form_validation');
     }
 
     public function index(): void
@@ -48,14 +51,17 @@ class Usuario extends MY_Controller
 
     public function create()
     {
-        $this->load->view('usuario/form');
+        $tiposUsuario = $this->TipoUsuario_model->getAll();
+
+        $data['tiposUsuario'] = $tiposUsuario;
+
+        $this->load->view('usuario/form', $data);
     }
 
     public function store()
     {
         $this->onlyPost();
 
-        
         $data = $this->input->post();
 
         if (!$this->form_validation->run('usuario/store')) {
@@ -68,7 +74,7 @@ class Usuario extends MY_Controller
             $data['nome'],
             $data['email'],
             $hashSenha,
-            (int) $data['tipo'],
+            (int) $data['tipo_usuario'],
             $this->getEmpresaiD()
         );
 
@@ -94,4 +100,64 @@ class Usuario extends MY_Controller
 
     }
 
+    public function edit(int $id)
+    {
+        $data = [];
+
+        $usuario = $this->Usuario_model->getById($id);
+
+        $tiposUsuario = $this->TipoUsuario_model->getAll();
+
+        $data['tiposUsuario'] = $tiposUsuario;
+
+        if (!$usuario) {
+            redirect(base_url() . 'usuario/');
+            return;
+        }
+
+        $data['usuario'] = $usuario;
+
+        $this->load->view('usuario/form', $data);
+    }
+
+    public function update()
+    {
+        $this->onlyPost();
+
+        $usuario = $this->input->post();
+
+        if (!$this->form_validation->run('usuario/update')) {
+            return $this->outputJson(['status' => false, 'message' => validation_errors()]);
+        }
+
+        $hashSenha = null;
+
+        if (!empty($usuario['senha']))
+        {
+            $hashSenha = password_hash($usuario['senha'], PASSWORD_DEFAULT);
+        }
+
+        $updateUsuarioDto = new UpdateUsuarioDTO(
+            (int) $usuario['id'],
+            $usuario['nome'],
+            $usuario['email'],
+            $hashSenha,
+            (int) $usuario['tipo_usuario']
+        );
+
+        $update = $this->Usuario_model->update($updateUsuarioDto);
+        
+        if (!$update)
+        {
+            $this->db->trans_rollback();
+
+            $this->outputJson(['status'  => false, 'message' => 'Erro ao editar o usuário!']);
+            return;
+        }
+
+        $this->db->trans_commit();
+
+        $this->outputJson(['status'  => true, 'message' => 'Usuário editado com sucesso!']);
+        return;
+    }
 }

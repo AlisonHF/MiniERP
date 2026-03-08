@@ -138,7 +138,29 @@ $config = [
             'rules' => 'required|min_length[6]|max_length[255]'
         ],
         [
-            'field' => 'tipo',
+            'field' => 'tipo_usuario',
+            'label' => 'Tipo usuário',
+            'rules' => 'required'
+        ],
+    ],
+    'usuario/update' => [
+        [
+            'field' => 'nome',
+            'label' => 'Nome',
+            'rules' => 'required|min_length[3]|max_length[100]'
+        ],
+        [
+            'field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|valid_email|unique_field[usuario.email.id.id_empresa]'
+        ],
+        [
+            'field' => 'senha',
+            'label' => 'Senha',
+            'rules' => 'min_length[6]|max_length[255]'
+        ],
+        [
+            'field' => 'tipo_usuario',
             'label' => 'Tipo usuário',
             'rules' => 'required'
         ],

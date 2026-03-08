@@ -2,7 +2,8 @@ function validateForm(
     nome,
     email,
     senha,
-    tipoUsuario
+    tipoUsuario,
+    url
 ) {
     let errors = [];
 
@@ -18,11 +19,13 @@ function validateForm(
         errors.push('E-mail deve ter no máximo 255 caracteres.');
     }
 
-    if (!senha) {
-        errors.push('O campo senha é obrigatório.');
-    }
-    else if (senha.length < 6) {
-        errors.push('O campo senha deve ter 6 digitos ou mais.');
+    if (url == 'create')
+    {
+        if (!senha) {
+            errors.push('O campo senha é obrigatório.');
+        } else if (senha.length < 6) {
+            errors.push('O campo senha deve ter 6 digitos ou mais.');
+        }
     }
 
     if (!tipoUsuario) {
@@ -46,9 +49,9 @@ function sendForm(url) {
     let nome = $('#nome').val();
     let email = $('#email').val();
     let senha = $('#senha').val();
-    let tipoUsuario = $('#tipo').val();
+    let tipoUsuario = $('#tipo_usuario').val();
 
-    if (!validateForm(nome, email, senha, tipoUsuario)) {
+    if (!validateForm(nome, email, senha, tipoUsuario, url)) {
         return false;
     }
 
@@ -57,7 +60,7 @@ function sendForm(url) {
     formData.append('nome', nome);
     formData.append('email', email);
     formData.append('senha', senha);
-    formData.append('tipo', tipoUsuario);
+    formData.append('tipo_usuario', tipoUsuario);
 
     if (url == 'update') {
         let id = $('#id').val();

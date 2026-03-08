@@ -68,14 +68,14 @@
                                     <?= $usuario['email'] ?>
                                 </span>
                                 <span data-label="Tipo de usuário">
-                                    <?= $usuario['tipo_usuario'] ?>
+                                    <?= $usuario['descricao'] ?>
                                 </span>
                             
                                 <span class="date" data-label="Criado em">
                                     <?= date('d/m/Y', strtotime($usuario['created_at'])) ?>
                                 </span>
                                 <span class="actions" data-label="Ações">
-                                    <a href="#" class="btn btn-sm btn-primary" title="Editar">
+                                    <a href="<?= base_url('usuario/edit/' . $usuario['id']) ?>" class="btn btn-sm btn-primary" title="Editar">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <a href="#" id="#" class="btn btn-sm btn-danger delete" title="Excluir">

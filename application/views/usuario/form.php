@@ -44,8 +44,17 @@
                     </div>
 
                     <div>
-                        <label for="tipo" class="form-label">Tipo usuário</label>
-                        <input id="tipo" name="tipo" class="form-control">
+                        <label for="tipo_usuario" class="form-label">Tipo usuário</label>
+                        <select id="tipo_usuario" name="tipo_usuario" class="form-control">
+                            <option value="">Selecione</option>
+                            <?php if ($tiposUsuario): ?>
+                                <?php foreach($tiposUsuario as $tipoUsuario): ?>
+                                    <option value="<?= $tipoUsuario['id'] ?>" <?= isset($usuario['tipo_usuario']) && $usuario['tipo_usuario'] == $tipoUsuario['id'] ? 'selected' : '' ?>>
+                                        <?= $tipoUsuario['descricao'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </select>
                     </div>
 
                     <div class="mt-5">

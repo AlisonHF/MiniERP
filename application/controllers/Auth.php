@@ -32,7 +32,7 @@ class Auth extends MY_Controller
         $email = $data['email'];
         $senha = $data['senha'];
 
-        $usuario = $this->Usuario_model->get_by_email($email);
+        $usuario = $this->Usuario_model->getByEmail($email);
 
         if (!$usuario) {
             return $this->outputJson([
