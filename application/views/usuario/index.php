@@ -26,6 +26,9 @@
                 <div class="col-md-1">
                     <label class="form-label" for="limite">Limite</label>
                     <select class="form-control" id="limite" name="limite">
+                        <?php for ($i = 15; $i <= 100; $i += 15): ?>
+                            <option value="<?= $i ?>"><?= $i ?></option>
+                        <?php endfor; ?>
                     </select>
                 </div>
 
@@ -78,7 +81,7 @@
                                     <a href="<?= base_url('usuario/edit/' . $usuario['id']) ?>" class="btn btn-sm btn-primary" title="Editar">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a href="#" id="#" class="btn btn-sm btn-danger delete" title="Excluir">
+                                    <a href="#" id="<?= $usuario['id'] ?>" class="btn btn-sm btn-danger delete" title="Excluir">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </span>

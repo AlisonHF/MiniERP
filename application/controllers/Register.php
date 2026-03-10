@@ -71,7 +71,7 @@ class Register extends MY_Controller
             $data['nome'],
             $data['email'],
             $hashSenha,
-            1,
+            3,
             $empresaId
         );
 

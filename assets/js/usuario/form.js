@@ -22,14 +22,14 @@ function validateForm(
     if (url == 'create')
     {
         if (!senha) {
-            errors.push('O campo senha é obrigatório.');
+            errors.push('O campo Senha é obrigatório.');
         } else if (senha.length < 6) {
-            errors.push('O campo senha deve ter 6 digitos ou mais.');
+            errors.push('O campo Senha deve ter 6 digitos ou mais.');
         }
     }
 
     if (!tipoUsuario) {
-        errors.push('O campo tipo de usuário é obrigatório.');
+        errors.push('O campo Tipo de usuário é obrigatório.');
     }
 
     if (errors.length > 0) {

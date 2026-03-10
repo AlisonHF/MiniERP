@@ -107,4 +107,22 @@ class Usuario_model extends CI_Model
 
         return true;
     }
+
+    public function delete(int $id, int $idEmpresa)
+    {
+        $usuario = $this->db->select('tipo_usuario')
+        ->from($this->table)
+        ->where('id', $id)
+        ->where('id_empresa', $idEmpresa)
+        ->get()
+        ->row();
+
+        if ($usuario->tipo_usuario == 3) {
+            return false;
+        }
+
+        $this->db->delete($this->table, ['id' => $id, 'id_empresa' => $idEmpresa, 'tipo_usuario !=' => 3]);
+
+        return true;
+    }
 }

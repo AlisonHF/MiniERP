@@ -65,7 +65,7 @@
                 <a href="<?= base_url('produto/create') ?>" class="btn btn-primary">
                     Novo Produto
                 </a>
-                <a href="#" class="btn btn-secondary">
+                <a href="<?= base_url("usuario/create") ?>" class="btn btn-secondary">
                     Vincular Usuário
                 </a>
             </div>

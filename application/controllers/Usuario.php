@@ -160,4 +160,27 @@ class Usuario extends MY_Controller
         $this->outputJson(['status'  => true, 'message' => 'Usuário editado com sucesso!']);
         return;
     }
+
+    public function delete()
+    {
+        $this->onlyPost();
+
+        $id = (int) ($this->input->post())['id'];
+
+        $this->db->trans_begin();
+
+        $delete = $this->Usuario_model->delete($id, $this->getEmpresaiD());
+
+        if (!$delete)
+        {
+            $this->db->trans_rollback();
+
+            return $this->outputJson(['status'  => false, 'message' => 'Não é possível excluir um usuário fundador!']);
+        }
+
+        $this->db->trans_commit();
+
+        $this->outputJson(['status'  => true, 'message' => 'Usuário excluído com sucesso!']);
+        return;
+    }
 }
