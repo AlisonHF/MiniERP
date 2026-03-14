@@ -20,7 +20,6 @@
 <body>
 
     <div class="page">
-
         <nav class="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="<?= isset($user) && !empty($user) ? base_url('home') : base_url() ?>">
