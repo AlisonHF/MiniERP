@@ -3,7 +3,7 @@
 
         <div class="cliente-wrapper cliente-edit">
 
-            <form id="" class="auth-form">
+            <form id="<?= isset($cliente['id']) ? 'edit' : 'create'?>Form" class="auth-form">
                 <div class="row g-4">
                     <div class="cliente-header mb-2">
                         <i class="bi bi-person"></i>
@@ -27,7 +27,7 @@
                             <input type="text" class="form-control" id="nome" name="nome"/>
                         </div>
 
-                        <div class="col-md-12" class="div_razao">
+                        <div class="col-md-12" id="div_razao">
                             <label for="razao_social" class="form-label">Razão social</label>
                             <input type="text" class="form-control" id="razao_social" name="razao_social"/>
                         </div>

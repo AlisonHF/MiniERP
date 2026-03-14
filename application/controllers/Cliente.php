@@ -45,6 +45,11 @@ class Cliente extends MY_Controller
         $this->load->view('cliente/form');
     }
 
+    public function store()
+    {
+        dd($this->input->post());
+    }
+
 //     public function store()
 //     {
 //         $this->onlyPost();

@@ -6,7 +6,7 @@
                 <h1>
                     <i class="bi bi-person"></i> Lista de Clientes
                 </h1>
-                <a href="" class="btn btn-primary">
+                <a href="<?= base_url('cliente/create') ?>" class="btn btn-primary">
                     <i class="bi bi-plus-lg"></i>
                     Novo Cliente
                 </a>
