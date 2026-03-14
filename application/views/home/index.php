@@ -19,7 +19,7 @@
                             <i class="bi bi-people display-6 mb-2"></i>
                             <h5 class="card-title">Clientes</h5>
                             <h2></h2>
-                            <a href="#" class="btn btn-outline-primary btn-sm mt-2">
+                            <a href="<?= base_url("cliente") ?>" class="btn btn-outline-primary btn-sm mt-2">
                                 Gerenciar
                             </a>
                         </div>
@@ -59,7 +59,7 @@
             <h4>Ações rápidas</h4>
 
             <div class="d-flex gap-2 flex-wrap">
-                <a href="#" class="btn btn-primary">
+                <a href="<?= base_url("cliente/create") ?>" class="btn btn-primary">
                     Novo cliente
                 </a>
                 <a href="<?= base_url('produto/create') ?>" class="btn btn-primary">

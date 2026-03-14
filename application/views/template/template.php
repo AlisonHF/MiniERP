@@ -38,6 +38,11 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="<?= base_url("cliente") ?>">Clientes</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="<?= base_url("usuario") ?>">Usuários</a>
                             </li>
                         </ul>
