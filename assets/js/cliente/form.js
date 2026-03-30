@@ -106,6 +106,7 @@ function sendForm(url)
         formData.append('rg', rg);
         formData.append('apelido', apelido);
         formData.append('data_nascimento', data_nascimento);
+        formData.append('tipo_pessoa', tipo_pessoa);
     } else {
         if (!validatePessoaJuridica(razao_social, cnpj, inscricao_estadual, nome_fantasia, data_abertura)) {
             return false;
@@ -116,6 +117,7 @@ function sendForm(url)
         formData.append('inscricao_estadual', inscricao_estadual);
         formData.append('nome_fantasia', nome_fantasia);
         formData.append('data_abertura', data_abertura);
+        formData.append('tipo_pessoa', tipo_pessoa);
     }
 
     if (url == 'update') {

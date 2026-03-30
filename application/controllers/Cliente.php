@@ -47,86 +47,96 @@ class Cliente extends MY_Controller
 
     public function store()
     {
-        dd($this->input->post());
+        $this->onlyPost();
+
+        $data = $this->input->post();
+
+        if (!$this->form_validation->run('cliente/store')) {
+            return $this->outputJson(['status' => false, 'message' => validation_errors()]);
+        }
+
+        $clienteDto = new CreateClienteDTO(
+            $data['cpf'] ?? null,
+            $data['cnpj'] ?? null,
+            $data['nome'] ?? null,
+            $data['razao_social'] ?? null,
+            $data['apelido'] ?? null,
+            $data['nome_fantasia'] ?? null,
+            $data['inscricao_estadual'] ?? null,
+            $data['rg'] ?? null,
+            $data['tipo_pessoa'],
+            $data['data_nascimento'] ?? null,
+            $data['data_abertura'] ?? null,
+            $this->getEmpresaiD()
+        );
+
+        $this->db->trans_begin();
+
+        $clienteId = $this->Cliente_model->store($clienteDto);
+
+        if (!$clienteId) {
+            $this->db->trans_rollback();
+
+            return $this->outputJson([
+                'status'  => false,
+                'message' => 'Erro ao cadastrar cliente'
+            ]);
+        }
+
+        $this->db->trans_commit();
+
+        return $this->outputJson([
+            'status'  => true,
+            'message' => 'Cliente cadastrado com sucesso'
+        ]);
+
     }
 
-//     public function store()
-//     {
-//         $this->onlyPost();
+    public function edit(int $id)
+    {
+        $data = [];
 
-//         $data = $this->input->post();
+        $cliente = $this->Cliente_model->getById($id);
 
-//         if (!$this->form_validation->run('cliente/store')) {
-//             return $this->outputJson(['status' => false, 'message' => validation_errors()]);
-//         }
+        $tiposUsuario = $this->TipoUsuario_model->getAll();
 
-//         $this->db->trans_begin();
+        $data['tiposUsuario'] = $tiposUsuario;
 
-//         $clienteId = $this->Cliente_model->store();
+        if (!$cliente) {
+            redirect(base_url() . 'cliente/');
+            return;
+        }
 
-//         if (!$clienteId) {
-//             $this->db->trans_rollback();
+        $data['usuario'] = $cliente;
 
-//             return $this->outputJson([
-//                 'status'  => false,
-//                 'message' => 'Erro ao cadastrar cliente'
-//             ]);
-//         }
+        $this->load->view('cliente/form', $data);
+    }
 
-//         $this->db->trans_commit();
+    // public function update()
+    // {
+    //     $this->onlyPost();
 
-//         return $this->outputJson([
-//             'status'  => true,
-//             'message' => 'Cliente cadastrado com sucesso'
-//         ]);
+    //     $cliente = $this->input->post();
 
-//     }
+    //     if (!$this->form_validation->run('cliente/update')) {
+    //         return $this->outputJson(['status' => false, 'message' => validation_errors()]);
+    //     }
 
-//     public function edit(int $id)
-//     {
-//         $data = [];
-
-//         $cliente = $this->Cliente_model->getById($id);
-
-//         $tiposUsuario = $this->TipoUsuario_model->getAll();
-
-//         $data['tiposUsuario'] = $tiposUsuario;
-
-//         if (!$cliente) {
-//             redirect(base_url() . 'cliente/');
-//             return;
-//         }
-
-//         $data['usuario'] = $cliente;
-
-//         $this->load->view('cliente/form', $data);
-//     }
-
-//     public function update()
-//     {
-//         $this->onlyPost();
-
-//         $cliente = $this->input->post();
-
-//         if (!$this->form_validation->run('cliente/update')) {
-//             return $this->outputJson(['status' => false, 'message' => validation_errors()]);
-//         }
-
-//         $update = $this->Cliente_model->update();
+    //     $update = $this->Cliente_model->update();
         
-//         if (!$update)
-//         {
-//             $this->db->trans_rollback();
+    //     if (!$update)
+    //     {
+    //         $this->db->trans_rollback();
 
-//             $this->outputJson(['status'  => false, 'message' => 'Erro ao editar o cliente!']);
-//             return;
-//         }
+    //         $this->outputJson(['status'  => false, 'message' => 'Erro ao editar o cliente!']);
+    //         return;
+    //     }
 
-//         $this->db->trans_commit();
+    //     $this->db->trans_commit();
 
-//         $this->outputJson(['status'  => true, 'message' => 'Cliente editado com sucesso!']);
-//         return;
-//     }
+    //     $this->outputJson(['status'  => true, 'message' => 'Cliente editado com sucesso!']);
+    //     return;
+    // }
 
 //     public function delete()
 //     {

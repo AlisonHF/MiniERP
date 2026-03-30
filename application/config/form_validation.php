@@ -164,5 +164,62 @@ $config = [
             'label' => 'Tipo usuário',
             'rules' => 'required'
         ],
+    ],
+    'cliente/store' => [
+        [
+            'field' => 'cpf',
+            'label' => 'CPF',
+            'rules' => 'max_length[11]|is_unique[cliente.cpf]'
+        ],
+        [
+            'field' => 'cnpj',
+            'label' => 'CNPJ',
+            'rules' => 'max_length[14]|is_unique[cliente.cnpj]'
+        ],
+        [
+            'field' => 'nome',
+            'label' => 'Nome',
+            'rules' => 'max_length[255]'
+        ],
+        [
+            'field' => 'razao_social',
+            'label' => 'Razão Social',
+            'rules' => 'max_length[255]'
+        ],
+        [
+            'field' => 'apelido',
+            'label' => 'Apelido',
+            'rules' => 'max_length[255]'
+        ],
+        [
+            'field' => 'nome_fantasia',
+            'label' => 'Nome Fantasia',
+            'rules' => 'max_length[255]'
+        ],
+        [
+            'field' => 'inscricao_estadual',
+            'label' => 'Inscrição Estadual',
+            'rules' => 'max_length[30]'
+        ],
+        [
+            'field' => 'rg',
+            'label' => 'RG',
+            'rules' => 'max_length[14]'
+        ],
+        [
+            'field' => 'tipo_pessoa',
+            'label' => 'Tipo Pessoa',
+            'rules' => 'required'
+        ],
+        [
+            'field' => 'data_nascimento',
+            'label' => 'Data Nascimento',
+            'rules' => 'max_length[10]'
+        ],
+        [
+            'field' => 'data_abertura',
+            'label' => 'Data Abertura',
+            'rules' => 'max_length[10]'
+        ]
     ]
 ];

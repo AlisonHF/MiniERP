@@ -15,7 +15,7 @@ class Empresa_model extends CI_Model {
     public function store(CreateEmpresaDTO $createEmpresaDto)
     {
         try {
-            $this->db->insert('empresa', $createEmpresaDto->asArray());
+            $this->db->insert('empresa', $createEmpresaDto->toArray());
             return $this->db->insert_id();
         } catch (Exception $e) {
             return $e->getMessage();

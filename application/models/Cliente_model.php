@@ -20,14 +20,9 @@ class Cliente_model extends CI_Model
     {
         try {
             return $this->db->select([
-                'usuario.id',
-                'nome',
-                'email',
-                'tipo_usuario.descricao',
-                'created_at'
+                
             ])
             ->from($this->table)
-            ->join('tipo_usuario', 'usuario.tipo_usuario = tipo_usuario.id')
             ->where('id_empresa', $idEmpresa)
             ->like($like)
             ->limit($limit, $offset)
@@ -46,10 +41,10 @@ class Cliente_model extends CI_Model
         return $this->db->count_all_results();
     }
     
-    public function store(CreateUsuarioDTO $createUsuarioDTO)
+    public function store(CreateClienteDTO $createClienteDTO)
     {
         try {
-            $this->db->insert($this->table, $createUsuarioDTO->toArray());
+            $this->db->insert($this->table, $createClienteDTO->toArray());
             return $this->db->insert_id();
         } catch (Exception $e) {
             return $e->getMessage();

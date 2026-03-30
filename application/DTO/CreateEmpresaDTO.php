@@ -151,7 +151,7 @@ class CreateEmpresaDTO
         return $this;
     }
 
-    public function asArray(): array
+    public function toArray(): array
     {
         return [
             'razao_social' => $this->razaoSocial,
