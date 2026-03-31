@@ -3,20 +3,24 @@
 
         <div class="cliente-wrapper cliente-edit">
 
-            <form id="<?= isset($cliente['id']) ? 'edit' : 'create'?>Form" class="auth-form">
+            <form id="<?= isset($cliente['id']) ? 'edit' : 'create' ?>Form" class="auth-form">
                 <div class="row g-4">
                     <div class="cliente-header mb-2">
                         <i class="bi bi-person"></i>
-                        <h1>Cadastrar cliente</h1>
+                        <h1><?= isset($cliente['id']) ? 'Editar cliente' : 'Cadastrar cliente' ?></h1>
                         <hr/>
                     </div>
+
+                    <?php if (isset($cliente['id'])): ?>
+                        <input type="hidden" id="id" name="id" value="<?= $cliente['id'] ?>">
+                    <?php endif; ?>
 
                     <div class="row mb-1">
                         <div class="col-md-6">
                             <label for="tipo_pessoa" class="form-label">Tipo de pessoa</label>
-                            <select type="text" class="form-control" id="tipo_pessoa" name="tipo_pessoa">
-                                <option value="F" selected>Fisica</option>
-                                <option value="J">Juridica</option>
+                            <select class="form-control" id="tipo_pessoa" name="tipo_pessoa">
+                                <option value="F" <?= (isset($cliente['tipo_pessoa']) && $cliente['tipo_pessoa'] === 'F') ? 'selected' : '' ?>>Física</option>
+                                <option value="J" <?= (isset($cliente['tipo_pessoa']) && $cliente['tipo_pessoa'] === 'J') ? 'selected' : '' ?>>Jurídica</option>
                             </select>
                         </div>
                     </div>
@@ -24,55 +28,55 @@
                     <div class="row mb-1">
                         <div class="col-md-12" id="div_nome">
                             <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" name="nome"/>
+                            <input type="text" class="form-control" id="nome" name="nome" value="<?= $cliente['nome'] ?? '' ?>"/>
                         </div>
 
                         <div class="col-md-12" id="div_razao">
                             <label for="razao_social" class="form-label">Razão social</label>
-                            <input type="text" class="form-control" id="razao_social" name="razao_social"/>
+                            <input type="text" class="form-control" id="razao_social" name="razao_social" value="<?= $cliente['razao_social'] ?? '' ?>"/>
                         </div>
                     </div>
 
                     <div class="row mb-1">
                         <div class="col-md-6" id="div_cpf">
                             <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" id="cpf" name="cpf"/>
+                            <input type="text" class="form-control" id="cpf" name="cpf" value="<?= $cliente['cpf'] ?? '' ?>"/>
                         </div>
                         <div class="col-md-6" id="div_cnpj">
                             <label for="cnpj" class="form-label">CNPJ</label>
-                            <input type="text" class="form-control" id="cnpj" name="cnpj"/>
+                            <input type="text" class="form-control" id="cnpj" name="cnpj" value="<?= $cliente['cnpj'] ?? '' ?>"/>
                         </div>
 
                         <div class="col-md-6" id="div_rg">
                             <label for="rg" class="form-label">RG</label>
-                            <input type="text" class="form-control" id="rg" name="rg"/>
+                            <input type="text" class="form-control" id="rg" name="rg" value="<?= $cliente['rg'] ?? '' ?>"/>
                         </div>
                         <div class="col-md-6" id="div_inscricao">
                             <label for="inscricao_estadual" class="form-label">Inscrição estadual</label>
-                            <input type="text" class="form-control" id="inscricao_estadual" name="inscricao_estadual"/>
+                            <input type="text" class="form-control" id="inscricao_estadual" name="inscricao_estadual" value="<?= $cliente['inscricao_estadual'] ?? '' ?>"/>
                         </div>
                     </div>
 
                     <div class="row mb-1">
                         <div class="col-md-12" id="div_apelido">
                             <label for="apelido" class="form-label">Apelido</label>
-                            <input type="text" class="form-control" id="apelido" name="apelido"/>
+                            <input type="text" class="form-control" id="apelido" name="apelido" value="<?= $cliente['apelido'] ?? '' ?>"/>
                         </div>
 
                         <div class="col-md-12" id="div_nome_fantasia">
                             <label for="nome_fantasia" class="form-label">Nome fantasia</label>
-                            <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia"/>
+                            <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" value="<?= $cliente['nome_fantasia'] ?? '' ?>"/>
                         </div>
                     </div>
 
                     <div class="row mb-1">
                         <div class="col-md-6" id="div_data_nascimento">
                             <label for="data_nascimento" class="form-label">Data de nascimento</label>
-                            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento"/>
+                            <input type="date" class="form-control" id="data_nascimento" name="data_nascimento" value="<?= $cliente['data_nascimento'] ?? '' ?>"/>
                         </div>
                         <div class="col-md-6" id="div_data_abertura">
                             <label for="data_abertura" class="form-label">Data de abertura</label>
-                            <input type="date" class="form-control" id="data_abertura" name="data_abertura"/>
+                            <input type="date" class="form-control" id="data_abertura" name="data_abertura" value="<?= $cliente['data_abertura'] ?? '' ?>"/>
                         </div>
                     </div>
 

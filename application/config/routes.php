@@ -55,3 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['produto'] = 'produto/index';
 $route['produto/(:num)'] = 'produto/index/$1';
+
+$route['cliente'] = 'cliente/index';
+$route['cliente/(:num)'] = 'cliente/index/$1';

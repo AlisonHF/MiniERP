@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cliente extends MY_Controller
 {
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
 
@@ -15,32 +15,39 @@ class Cliente extends MY_Controller
         }
 
         $this->load->model('Cliente_model');
-
         $this->load->library('form_validation');
     }
 
     public function index(): void
     {
-        // $this->load->library('pagination');
-        // $this->load->helper('Render_pagination_helper');
+        $this->load->library('pagination');
+        $this->load->helper('Render_pagination_helper');
 
-        // $params = $this->input->post();
-        
-        // $like = [];
+        $params = $this->input->post();
 
-        // $total_rows = $this->Usuario_model->countAll($this->getEmpresaiD(), $like);
-        // $per_page = isset($params['limite']) ? (int) $params['limite'] : 15;
-        // $offset = (int) $this->uri->segment(2);
+        $like = [];
 
-        // $links = render_pagination_helper($total_rows, $per_page, 'usuario');
+        if (!empty($params['nome'])) {
+            $like['nome'] = $params['nome'];
+        }
 
-        // $data['links'] = $links;
-        // $data['cliente'] = $this->Cliente_model->getPaginated($per_page, $offset, $this->getEmpresaiD(), $like);
+        if (!empty($params['razao_social'])) {
+            $like['razao_social'] = $params['razao_social'];
+        }
 
-        $this->load->view('cliente/index');
+        $total_rows = $this->Cliente_model->countAll($this->getEmpresaiD(), $like);
+        $per_page   = isset($params['limite']) ? (int) $params['limite'] : 15;
+        $offset     = (int) $this->uri->segment(2);
+
+        $links = render_pagination_helper($total_rows, $per_page, 'cliente');
+
+        $data['links']    = $links;
+        $data['clientes'] = $this->Cliente_model->getPaginated($per_page, $offset, $this->getEmpresaiD(), $like);
+
+        $this->load->view('cliente/index', $data);
     }
 
-    public function create()
+    public function create(): void
     {
         $this->load->view('cliente/form');
     }
@@ -60,13 +67,13 @@ class Cliente extends MY_Controller
             $data['cnpj'] ?? null,
             $data['nome'] ?? null,
             $data['razao_social'] ?? null,
-            $data['apelido'] ?? null,
+            $data['apelido']       ?? null,
             $data['nome_fantasia'] ?? null,
             $data['inscricao_estadual'] ?? null,
             $data['rg'] ?? null,
             $data['tipo_pessoa'],
-            $data['data_nascimento'] ?? null,
-            $data['data_abertura'] ?? null,
+            ($data['data_nascimento'] ?? '') ?: null,
+            ($data['data_abertura']   ?? '') ?: null,
             $this->getEmpresaiD()
         );
 
@@ -79,7 +86,7 @@ class Cliente extends MY_Controller
 
             return $this->outputJson([
                 'status'  => false,
-                'message' => 'Erro ao cadastrar cliente'
+                'message' => 'Erro ao cadastrar cliente.',
             ]);
         }
 
@@ -87,77 +94,93 @@ class Cliente extends MY_Controller
 
         return $this->outputJson([
             'status'  => true,
-            'message' => 'Cliente cadastrado com sucesso'
+            'message' => 'Cliente cadastrado com sucesso!',
         ]);
-
     }
 
-    public function edit(int $id)
+    public function edit(int $id): void
     {
-        $data = [];
-
-        $cliente = $this->Cliente_model->getById($id);
-
-        $tiposUsuario = $this->TipoUsuario_model->getAll();
-
-        $data['tiposUsuario'] = $tiposUsuario;
+        $cliente = $this->Cliente_model->getById($id, $this->getEmpresaiD());
 
         if (!$cliente) {
             redirect(base_url() . 'cliente/');
             return;
         }
 
-        $data['usuario'] = $cliente;
-
-        $this->load->view('cliente/form', $data);
+        $this->load->view('cliente/form', ['cliente' => $cliente]);
     }
 
-    // public function update()
-    // {
-    //     $this->onlyPost();
+    public function update()
+    {
+        $this->onlyPost();
 
-    //     $cliente = $this->input->post();
+        $data = $this->input->post();
 
-    //     if (!$this->form_validation->run('cliente/update')) {
-    //         return $this->outputJson(['status' => false, 'message' => validation_errors()]);
-    //     }
+        if (!$this->form_validation->run('cliente/update')) {
+            return $this->outputJson(['status' => false, 'message' => validation_errors()]);
+        }
 
-    //     $update = $this->Cliente_model->update();
-        
-    //     if (!$update)
-    //     {
-    //         $this->db->trans_rollback();
+        $updateClienteDto = new UpdateClienteDTO(
+            (int) $data['id'],
+            $data['cpf'] ?? null,
+            $data['cnpj'] ?? null,
+            $data['nome'] ?? null,
+            $data['razao_social'] ?? null,
+            $data['apelido'] ?? null,
+            $data['nome_fantasia'] ?? null,
+            $data['inscricao_estadual'] ?? null,
+            $data['rg'] ?? null,
+            $data['tipo_pessoa'],
+            ($data['data_nascimento'] ?? '') ?: null,
+            ($data['data_abertura']   ?? '') ?: null,
+            $this->getEmpresaiD()
+        );
 
-    //         $this->outputJson(['status'  => false, 'message' => 'Erro ao editar o cliente!']);
-    //         return;
-    //     }
+        $this->db->trans_begin();
 
-    //     $this->db->trans_commit();
+        $update = $this->Cliente_model->update($updateClienteDto);
 
-    //     $this->outputJson(['status'  => true, 'message' => 'Cliente editado com sucesso!']);
-    //     return;
-    // }
+        if (!$update) {
+            $this->db->trans_rollback();
 
-//     public function delete()
-//     {
-//         $this->onlyPost();
+            return $this->outputJson([
+                'status'  => false,
+                'message' => 'Erro ao editar o cliente!',
+            ]);
+        }
 
-//         $id = (int) ($this->input->post())['id'];
+        $this->db->trans_commit();
 
-//         $this->db->trans_begin();
+        return $this->outputJson([
+            'status'  => true,
+            'message' => 'Cliente editado com sucesso!',
+        ]);
+    }
 
-//         $delete = $this->Cliente_model->delete($id, $this->getEmpresaiD());
+    public function delete()
+    {
+        $this->onlyPost();
 
-//         if (!$delete)
-//         {
-//             $this->db->trans_rollback();
+        $id = (int) ($this->input->post())['id'];
 
-//             return $this->outputJson(['status'  => false, 'message' => 'Ocorreu um erro ao excluir esse cliente!']);
-//         }
+        $this->db->trans_begin();
 
-//         $this->db->trans_commit();
+        $delete = $this->Cliente_model->delete($id, $this->getEmpresaiD());
 
-//         $this->outputJson(['status'  => true, 'message' => 'Cliente excluído com sucesso!']);
-//         return;
-//     }
+        if (!$delete) {
+            $this->db->trans_rollback();
+
+            return $this->outputJson([
+                'status'  => false,
+                'message' => 'Erro ao excluir o cliente!',
+            ]);
+        }
+
+        $this->db->trans_commit();
+
+        return $this->outputJson([
+            'status'  => true,
+            'message' => 'Cliente excluído com sucesso!',
+        ]);
+    }
 }

@@ -14,13 +14,8 @@
 
             <form class="row mb-3" method="post" action="#">
                 <div class="col-md-3">
-                    <label class="form-label" for="nome">Nome</label>
+                    <label class="form-label" for="nome">Nome / Razão Social</label>
                     <input class="form-control" id="nome" name="nome">
-                </div>
-                
-                <div class="col-md-3">
-                    <label class="form-label" for="email">E-mail</label>
-                    <input class="form-control" id="email" name="email">
                 </div>
                 
                 <div class="col-md-1">
@@ -32,50 +27,51 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-6">
                     &nbsp;
                 </div>
 
-                <div class="col-md-2" >
+                <div class="col-md-2">
                     <label>&nbsp;</label>
                     <button type="submit" class="btn btn-primary w-100">
                         <i class="bi bi-search"></i> Buscar
                     </button>
                 </div>
-
             </form>
 
             <hr/>
 
             <div class="user-list-wrapper">
                 <div class="user-list-header">
-                    <span>Nome/Razão</span>
-                    <span>Apelido/Nome Fantasia</span>
-                    <span>CPF/CNPJ</span>
-                    <span>Data de nascimento/Abertura</span>                    
+                    <span>Nome / Razão Social</span>
+                    <span>Apelido / Nome Fantasia</span>
+                    <span>CPF / CNPJ</span>
+                    <span>Data Nasc. / Abertura</span>
                     <span class="text-center">Ações</span>
                 </div>
 
                 <div class="user-list-body">
-                    <?php if(empty($clientes)): ?>
+                    <?php if (empty($clientes)): ?>
                         <div class="empty-row">
                             Sem clientes cadastrados
                         </div>
                     <?php else: ?>
                         <?php foreach ($clientes as $cliente): ?>
                             <div class="user-row">
-                                <span class="desc" data-label="Nome/Razão">
-                                    <?= $cliente['nome'] ?>
+                                <span class="desc" data-label="Nome / Razão Social">
+                                    <?= htmlspecialchars($cliente['tipo_pessoa'] === 'F' ? $cliente['nome'] : $cliente['razao_social']) ?>
                                 </span>
-                                <span data-label="Apelido/Nome Fantasia">
-                                    <?= $cliente['descricao'] ?>
+                                <span data-label="Apelido / Nome Fantasia">
+                                    <?= htmlspecialchars($cliente['tipo_pessoa'] === 'F' ? ($cliente['apelido'] ?? '-') : ($cliente['nome_fantasia'] ?? '-')) ?>
                                 </span>
-                                <span data-label="CPF/CNPJ">
-                                    <?= $cliente['email'] ?>
+                                <span data-label="CPF / CNPJ">
+                                    <?= htmlspecialchars($cliente['tipo_pessoa'] === 'F' ? ($cliente['cpf'] ?? '-') : ($cliente['cnpj'] ?? '-')) ?>
                                 </span>
-                            
-                                <span class="date" data-label="Data de nascimento/Abertura">
-                                    <?= date('d/m/Y', strtotime($cliente['created_at'])) ?>
+                                <span class="date" data-label="Data Nasc. / Abertura">
+                                    <?php
+                                        $data = $cliente['tipo_pessoa'] === 'F' ? $cliente['data_nascimento'] : $cliente['data_abertura'];
+                                        echo $data ? date('d/m/Y', strtotime($data)) : '-';
+                                    ?>
                                 </span>
                                 <span class="actions" data-label="Ações">
                                     <a href="<?= base_url('cliente/edit/' . $cliente['id']) ?>" class="btn btn-sm btn-primary" title="Editar">
@@ -92,7 +88,7 @@
             </div>
 
             <div class="list-footer mt-3">
-                <!-- <?= $links ?> -->
+                <?= $links ?>
             </div>
 
         </div>
