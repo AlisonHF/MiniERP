@@ -45,16 +45,22 @@
 
                     <div>
                         <label for="tipo_usuario" class="form-label">Tipo usuário</label>
-                        <select id="tipo_usuario" name="tipo_usuario" class="form-control">
+                        <?php $isFundador = isset($usuario['tipo_usuario']) && (int) $usuario['tipo_usuario'] === 3; ?>
+                        <select id="tipo_usuario" name="tipo_usuario" class="form-control" <?= $isFundador ? 'disabled' : '' ?>>
                             <option value="">Selecione</option>
                             <?php if ($tiposUsuario): ?>
                                 <?php foreach($tiposUsuario as $tipoUsuario): ?>
+                                    <?php if ((int) $tipoUsuario['id'] === 3 && !$isFundador) continue; ?>
                                     <option value="<?= $tipoUsuario['id'] ?>" <?= isset($usuario['tipo_usuario']) && $usuario['tipo_usuario'] == $tipoUsuario['id'] ? 'selected' : '' ?>>
                                         <?= $tipoUsuario['descricao'] ?>
                                     </option>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </select>
+                        <?php if ($isFundador): ?>
+                            <input type="hidden" name="tipo_usuario" value="<?= $usuario['tipo_usuario'] ?>">
+                            <small class="form-text text-muted">O tipo de usuário de um fundador não pode ser alterado.</small>
+                        <?php endif; ?>
                     </div>
 
                     <div class="mt-5">

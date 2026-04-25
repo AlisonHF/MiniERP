@@ -30,17 +30,30 @@ footer {
     flex-direction: column;
 }
 
-select.form-control, input.form-control {
+select.form-control, input.form-control, textarea.form-control {
     background-color: #2a2a2a;
     border: 1px solid #3a3a3a;
     color: #ffffff;
 }
 
-select.form-control:focus, input.form-control:focus {
+select.form-control:focus, input.form-control:focus, textarea.form-control:focus {
     background-color: #2a2a2a;
     border-color: #0d6efd;
     box-shadow: 0 0 0 .15rem rgba(13,110,253,.35);
     color: #ffffff;
+}
+
+select.form-control:disabled,
+input.form-control:disabled,
+textarea.form-control:disabled,
+select.form-control[readonly],
+input.form-control[readonly],
+textarea.form-control[readonly] {
+    background-color: #232323;
+    border-color: #333;
+    color: #9a9a9a;
+    opacity: 1;
+    cursor: not-allowed;
 }
 
 label.form-label {

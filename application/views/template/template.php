@@ -41,6 +41,11 @@
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="<?= base_url("venda") ?>">Vendas</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="<?= base_url("usuario") ?>">Usuários</a>
                             </li>
                         </ul>

@@ -13,7 +13,7 @@
 
             <div class="row g-4">
 
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card dashboard-card">
                         <div class="card-body text-center">
                             <i class="bi bi-people display-6 mb-2"></i>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
                     <div class="card dashboard-card">
                         <div class="card-body text-center">
                             <i class="bi bi-box-seam display-6 mb-2"></i>
@@ -39,7 +39,20 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="card dashboard-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-receipt display-6 mb-2"></i>
+                            <h5 class="card-title">Vendas</h5>
+                            <h2></h2>
+                            <a href="<?= base_url("venda") ?>" class="btn btn-outline-primary btn-sm mt-2">
+                                Gerenciar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-3">
                     <div class="card dashboard-card">
                         <div class="card-body text-center">
                             <i class="bi bi-person-badge display-6 mb-2"></i>
@@ -64,6 +77,9 @@
                 </a>
                 <a href="<?= base_url('produto/create') ?>" class="btn btn-primary">
                     Novo Produto
+                </a>
+                <a href="<?= base_url('venda/create') ?>" class="btn btn-primary">
+                    Nova Venda
                 </a>
                 <a href="<?= base_url("usuario/create") ?>" class="btn btn-secondary">
                     Vincular Usuário

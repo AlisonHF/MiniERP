@@ -283,5 +283,39 @@ $config = [
             'label' => 'Data Abertura',
             'rules' => 'max_length[10]'
         ]
-    ]
+    ],
+    'venda/store' => [
+        [
+            'field' => 'numero',
+            'label' => 'Número',
+            'rules' => 'required|max_length[20]'
+        ],
+        [
+            'field' => 'id_cliente',
+            'label' => 'Cliente',
+            'rules' => 'required|integer'
+        ],
+        [
+            'field' => 'status',
+            'label' => 'Status',
+            'rules' => 'required|in_list[aberta,finalizada,cancelada]'
+        ],
+    ],
+    'venda/update' => [
+        [
+            'field' => 'id',
+            'label' => 'ID',
+            'rules' => 'required|integer'
+        ],
+        [
+            'field' => 'id_cliente',
+            'label' => 'Cliente',
+            'rules' => 'required|integer'
+        ],
+        [
+            'field' => 'status',
+            'label' => 'Status',
+            'rules' => 'required|in_list[aberta,finalizada,cancelada]'
+        ],
+    ],
 ];

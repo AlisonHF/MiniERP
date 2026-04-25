@@ -137,12 +137,17 @@ class Usuario extends MY_Controller
             $hashSenha = password_hash($usuario['senha'], PASSWORD_DEFAULT);
         }
 
+        $usuarioAtual = $this->Usuario_model->getById((int) $usuario['id']);
+        $tipoUsuario  = (int) ($usuarioAtual['tipo_usuario'] ?? 0) === 3
+            ? 3
+            : (int) $usuario['tipo_usuario'];
+
         $updateUsuarioDto = new UpdateUsuarioDTO(
             (int) $usuario['id'],
             $usuario['nome'],
             $usuario['email'],
             $hashSenha,
-            (int) $usuario['tipo_usuario']
+            $tipoUsuario
         );
 
         $update = $this->Usuario_model->update($updateUsuarioDto);

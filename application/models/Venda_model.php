@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cliente_model extends CI_Model
+class Venda_model extends CI_Model
 {
     private string $table;
 
@@ -12,7 +12,7 @@ class Cliente_model extends CI_Model
     {
         parent::__construct();
 
-        $this->table = 'cliente';
+        $this->table = 'venda';
 
         $this->load->database();
     }
@@ -21,21 +21,20 @@ class Cliente_model extends CI_Model
     {
         try {
             return $this->db->select([
-                'id',
-                'nome',
-                'razao_social',
-                'apelido',
-                'nome_fantasia',
-                'cpf',
-                'cnpj',
-                'tipo_pessoa',
-                'data_nascimento',
-                'data_abertura',
-                'created_at',
+                'venda.id',
+                'venda.numero',
+                'venda.status',
+                'venda.total',
+                'venda.created_at',
+                'cliente.nome',
+                'cliente.razao_social',
+                'cliente.tipo_pessoa',
             ])
             ->from($this->table)
-            ->where('id_empresa', $idEmpresa)
+            ->join('cliente', 'cliente.id = venda.id_cliente', 'left')
+            ->where('venda.id_empresa', $idEmpresa)
             ->like($like)
+            ->order_by('venda.id', 'DESC')
             ->limit($limit, $offset)
             ->get()
             ->result_array();
@@ -53,11 +52,11 @@ class Cliente_model extends CI_Model
         return $this->db->count_all_results();
     }
 
-    public function store(CreateClienteDTO $createClienteDTO)
+    public function store(CreateVendaDTO $createVendaDTO)
     {
         try {
-            $this->db->insert($this->table, $createClienteDTO->toArray());
-            return $this->db->insert_id();
+            $this->db->insert($this->table, $createVendaDTO->toArray());
+            return (int) $this->db->insert_id();
         } catch (Exception $e) {
             return false;
         }
@@ -67,17 +66,12 @@ class Cliente_model extends CI_Model
     {
         return $this->db->select([
             'id',
-            'nome',
-            'razao_social',
-            'apelido',
-            'nome_fantasia',
-            'cpf',
-            'cnpj',
-            'rg',
-            'inscricao_estadual',
-            'tipo_pessoa',
-            'data_nascimento',
-            'data_abertura',
+            'numero',
+            'id_cliente',
+            'status',
+            'observacao',
+            'total',
+            'created_at',
         ])
         ->from($this->table)
         ->where('id', $id)
@@ -86,13 +80,13 @@ class Cliente_model extends CI_Model
         ->row_array();
     }
 
-    public function update(UpdateClienteDTO $updateClienteDTO)
+    public function update(UpdateVendaDTO $updateVendaDTO)
     {
         try {
             $this->db->update(
                 $this->table,
-                $updateClienteDTO->toArray(),
-                ['id' => $updateClienteDTO->getId(), 'id_empresa' => $updateClienteDTO->getIdEmpresa()]
+                $updateVendaDTO->toArray(),
+                ['id' => $updateVendaDTO->getId(), 'id_empresa' => $updateVendaDTO->getIdEmpresa()]
             );
 
             return true;
@@ -112,19 +106,11 @@ class Cliente_model extends CI_Model
         }
     }
 
-    public function getAllByEmpresa(int $idEmpresa)
+    public function generateNumero(int $idEmpresa): string
     {
-        return $this->db->select([
-            'id',
-            'nome',
-            'razao_social',
-            'tipo_pessoa',
-        ])
-        ->from($this->table)
-        ->where('id_empresa', $idEmpresa)
-        ->order_by('nome', 'ASC')
-        ->order_by('razao_social', 'ASC')
-        ->get()
-        ->result_array();
+        $row = $this->db->select_max('id')->from($this->table)->where('id_empresa', $idEmpresa)->get()->row_array();
+        $next = ((int) ($row['id'] ?? 0)) + 1;
+
+        return str_pad((string) $next, 6, '0', STR_PAD_LEFT);
     }
 }

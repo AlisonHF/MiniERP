@@ -58,3 +58,6 @@ $route['produto/(:num)'] = 'produto/index/$1';
 
 $route['cliente'] = 'cliente/index';
 $route['cliente/(:num)'] = 'cliente/index/$1';
+
+$route['venda'] = 'venda/index';
+$route['venda/(:num)'] = 'venda/index/$1';

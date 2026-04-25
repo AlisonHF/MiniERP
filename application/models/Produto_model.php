@@ -84,4 +84,20 @@ class Produto_model extends CI_Model
         return true;
     }
 
+    public function getAllByEmpresa(int $idEmpresa)
+    {
+        return $this->db->select([
+            'id',
+            'codigo',
+            'descricao',
+            'unidade',
+            'preco',
+        ])
+        ->from($this->table)
+        ->where('id_empresa', $idEmpresa)
+        ->order_by('descricao', 'ASC')
+        ->get()
+        ->result_array();
+    }
+
 }

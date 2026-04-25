@@ -71,7 +71,9 @@
                                     <?= $usuario['email'] ?>
                                 </span>
                                 <span data-label="Tipo de usuário">
-                                    <?= $usuario['descricao'] ?>
+                                    <span class="badge bg-<?= (strtolower($usuario['descricao'] ?? '') === 'fundador' ? 'success' : (strtolower($usuario['descricao'] ?? '') === 'administrador' ? 'primary' : 'secondary')) ?>">
+                                        <?= $usuario['descricao'] ?>
+                                    </span>
                                 </span>
                             
                                 <span class="date" data-label="Criado em">
