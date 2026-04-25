@@ -16,11 +16,11 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'dsn' => '',
+	'hostname' => 'db',
 	'username' => 'seu_usuario',
 	'password' => 'sua_senha',
-	'database' => 'projeto_produtos',
+	'database' => 'workup',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
