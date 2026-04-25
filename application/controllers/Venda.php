@@ -114,6 +114,7 @@ class Venda extends MY_Controller
             $itemDto = new CreateVendaItemDTO(
                 $vendaId,
                 (int) $item['id_produto'],
+                $this->getEmpresaiD(),
                 (float) $item['quantidade'],
                 (float) $item['preco_unitario'],
                 (float) $item['subtotal']
@@ -148,7 +149,7 @@ class Venda extends MY_Controller
 
         $data = [
             'venda'    => $venda,
-            'itens'    => $this->VendaItem_model->getByVenda($id),
+            'itens'    => $this->VendaItem_model->getByVenda($id, $this->getEmpresaiD()),
             'clientes' => $this->Cliente_model->getAllByEmpresa($this->getEmpresaiD()),
             'produtos' => $this->Produto_model->getAllByEmpresa($this->getEmpresaiD()),
         ];
@@ -199,7 +200,7 @@ class Venda extends MY_Controller
             ]);
         }
 
-        $this->VendaItem_model->deleteByVenda((int) $data['id']);
+        $this->VendaItem_model->deleteByVenda((int) $data['id'], $this->getEmpresaiD());
 
         foreach ($itens as $item) {
             $itemDto = new CreateVendaItemDTO(
@@ -233,6 +234,22 @@ class Venda extends MY_Controller
         $this->onlyPost();
 
         $id = (int) ($this->input->post())['id'];
+
+        $venda = $this->Venda_model->getById($id, $this->getEmpresaiD());
+
+        if (!$venda) {
+            return $this->outputJson([
+                'status'  => false,
+                'message' => 'Venda não encontrada.',
+            ]);
+        }
+
+        if (in_array($venda['status'], ['finalizada', 'cancelada'], true)) {
+            return $this->outputJson([
+                'status'  => false,
+                'message' => 'Não é possível excluir uma venda ' . $venda['status'] . '.',
+            ]);
+        }
 
         $this->db->trans_begin();
 

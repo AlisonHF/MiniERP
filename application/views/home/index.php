@@ -2,7 +2,7 @@
     <div class="row min-vh-100">
 
         <div class="col-md-3 left-divisor d-flex flex-column align-items-center justify-content-center">
-            <i class="bi bi-speedometer2 display-4 mb-2"></i>
+            <i class="bi bi-lightning-charge-fill display-4 mb-2 text-primary"></i>
             <h2>WorkUp</h2>
             <p class="text-center">Painel de Controle</p>
         </div>
@@ -82,7 +82,7 @@
                     Nova Venda
                 </a>
                 <a href="<?= base_url("usuario/create") ?>" class="btn btn-secondary">
-                    Vincular Usuário
+                    Cadastrar Usuário
                 </a>
             </div>
 

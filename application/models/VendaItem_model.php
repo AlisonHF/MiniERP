@@ -27,7 +27,7 @@ class VendaItem_model extends CI_Model
         }
     }
 
-    public function getByVenda(int $idVenda)
+    public function getByVenda(int $idVenda, int $idEmpresa)
     {
         return $this->db->select([
             'venda_item.id',
@@ -42,14 +42,15 @@ class VendaItem_model extends CI_Model
         ->from($this->table)
         ->join('produto', 'produto.id = venda_item.id_produto', 'left')
         ->where('venda_item.id_venda', $idVenda)
+        ->where('venda_item.id_empresa', $idEmpresa)
         ->get()
         ->result_array();
     }
 
-    public function deleteByVenda(int $idVenda)
+    public function deleteByVenda(int $idVenda, int $idEmpresa)
     {
         try {
-            $this->db->delete($this->table, ['id_venda' => $idVenda]);
+            $this->db->delete($this->table, ['id_venda' => $idVenda, 'id_empresa' => $idEmpresa]);
             return true;
         } catch (Exception $e) {
             return false;

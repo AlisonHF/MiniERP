@@ -61,3 +61,8 @@ $route['cliente/(:num)'] = 'cliente/index/$1';
 
 $route['venda'] = 'venda/index';
 $route['venda/(:num)'] = 'venda/index/$1';
+
+$route['senha/recuperar']           = 'senha/recuperar';
+$route['senha/enviar']              = 'senha/enviar';
+$route['senha/redefinir/(:any)']    = 'senha/redefinir/$1';
+$route['senha/atualizar']           = 'senha/atualizar';

@@ -28,12 +28,8 @@ function formValidateEmpresa(
         errors.push('CNPJ deve ter 14 caracteres.');
     }
 
-    if (!inscricaoEstadual) {
-        errors.push('Inscrição Estadual é obrigatória.');
-    } else if (inscricaoEstadual.length > 14) {
-        errors.push('Inscrição Estadual deve ter no máximo 14 caracteres.');
-    } else if (inscricaoEstadual.length < 7) {
-        errors.push('Inscrição Estadual deve ter no mínimo 7 caracteres.');
+    if (inscricaoEstadual && inscricaoEstadual.length > 15) {
+        errors.push('Inscrição Estadual deve ter no máximo 15 caracteres.');
     }
 
     if (!cep) {
@@ -142,11 +138,11 @@ function sendForm() {
     
     let nomeFantasia = $('#nomeFantasia').val();
     
-    let cnpj = $('#cnpj').val();
-    
+    let cnpj = ($('#cnpj').val() || '').replace(/\D/g, '');
+
     let inscricaoEstadual = $('#inscricaoEstadual').val();
-    
-    let cep = $('#cep').val();
+
+    let cep = ($('#cep').val() || '').replace(/\D/g, '');
     
     let endereco = $('#endereco').val();
     
@@ -218,4 +214,51 @@ function sendForm() {
 $('#createForm').submit(function(event) {
     event.preventDefault();
     sendForm();
+});
+
+$(document).ready(function () {
+    $('#cnpj').mask('00.000.000/0000-00', { reverse: false });
+    $('#cep').mask('00000-000', { reverse: false });
+    $('#uf').mask('AA', { reverse: false });
+});
+
+$('#cep').on('blur', async function () {
+    const cep = $(this).val();
+    if (!cep) return;
+
+    const result = await ApiHelpers.buscarCep(cep);
+
+    if (!result.ok) {
+        Swal.fire({ icon: 'warning', title: result.error });
+        return;
+    }
+
+    $('#endereco').val(result.data.endereco);
+    $('#bairro').val(result.data.bairro);
+    $('#cidade').val(result.data.cidade);
+    $('#uf').val(result.data.uf);
+    $('#numero').focus();
+});
+
+$('#cnpj').on('blur', async function () {
+    const cnpj = $(this).val();
+    if (!cnpj) return;
+
+    const result = await ApiHelpers.buscarCnpj(cnpj);
+
+    if (!result.ok) {
+        Swal.fire({ icon: 'warning', title: result.error });
+        return;
+    }
+
+    const d = result.data;
+
+    if (d.razao_social)  $('#razaoSocial').val(d.razao_social);
+    if (d.nome_fantasia) $('#nomeFantasia').val(d.nome_fantasia);
+    if (d.cep)           $('#cep').val(d.cep);
+    if (d.endereco)      $('#endereco').val(d.endereco);
+    if (d.bairro)        $('#bairro').val(d.bairro);
+    if (d.numero)        $('#numero').val(d.numero);
+    if (d.cidade)        $('#cidade').val(d.cidade);
+    if (d.uf)            $('#uf').val(d.uf);
 });

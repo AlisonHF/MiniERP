@@ -45,7 +45,7 @@ class Register extends MY_Controller
             $data['razaoSocial'],
             $data['nomeFantasia'],
             $data['cnpj'],
-            $data['inscricaoEstadual'],
+            $data['inscricaoEstadual'] ?? '',
             $data['cep'],
             $data['endereco'],
             $data['bairro'],

@@ -27,6 +27,10 @@
                     Não tem uma conta? Cadastre-se agora
                 </a>
 
+                <a id="link-create" href="<?= base_url('senha/recuperar') ?>">
+                    Esqueci minha senha
+                </a>
+
             </form>
         </div>
 

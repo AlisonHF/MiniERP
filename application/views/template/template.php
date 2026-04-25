@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkUp</title>
 
+    <link rel="icon" type="image/svg+xml" href="<?= base_url('favicon.svg') ?>">
+    <link rel="alternate icon" href="<?= base_url('favicon.ico') ?>">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link href="<?= base_url('assets/global.css') ?>" rel="stylesheet">
@@ -19,50 +22,59 @@
 </head>
 <body>
     <div class="page">
-        <nav class="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
+        <?php
+            $currentSection = isset($this) ? $this->uri->segment(1) : '';
+            $menuItems = [
+                'produto' => ['label' => 'Produtos',  'icon' => 'bi-box-seam'],
+                'cliente' => ['label' => 'Clientes',  'icon' => 'bi-people'],
+                'venda'   => ['label' => 'Vendas',    'icon' => 'bi-receipt'],
+                'usuario' => ['label' => 'Usuários',  'icon' => 'bi-person-badge'],
+            ];
+        ?>
+        <nav class="navbar navbar-expand-md app-navbar" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="<?= isset($user) && !empty($user) ? base_url('home') : base_url() ?>">
-                    WorkUp
+                    <i class="bi bi-lightning-charge-fill"></i>
+                    <span>WorkUp</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <?php if (isset($user) && !empty($user)): ?>
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= base_url("produto") ?>">Produtos</a>
-                            </li>
+                        <ul class="navbar-nav me-auto">
+                            <?php foreach ($menuItems as $key => $item): ?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?= $currentSection === $key ? 'active' : '' ?>" href="<?= base_url($key) ?>">
+                                        <i class="bi <?= $item['icon'] ?>"></i>
+                                        <span><?= $item['label'] ?></span>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= base_url("cliente") ?>">Clientes</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= base_url("venda") ?>">Vendas</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="<?= base_url("usuario") ?>">Usuários</a>
-                            </li>
-                        </ul>
-                        <div class="ms-auto">
-                            <a class="text-primary" href="<?= base_url() . 'auth/logout' ?>" style="text-decoration: none;">Sair</a>
-                        </div>
+
+                        <a class="btn btn-sm btn-outline-light navbar-logout" href="<?= base_url('auth/logout') ?>">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Sair</span>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>
         </nav>
+
+        <?php if (isset($user) && !empty($user)): ?>
+            <?= breadcrumb_helper() ?>
+        <?php endif; ?>
 
         <main>
             <?= $content ?? '' ?>
         </main>
     
         <footer class="bg-dark text-white text-center py-3">
-            <p>&copy; 2025 WorkUp. Todos os direitos reservados.</p>
+            <p class="mb-0">
+                <i class="bi bi-lightning-charge-fill text-primary"></i>
+                &copy; 2025 WorkUp. Todos os direitos reservados.
+            </p>
         </footer>
 
     </div>
@@ -75,6 +87,8 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous">
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		

@@ -1,5 +1,11 @@
 .DS_Store
 
+# Configuração de e-mail com credenciais reais (use email.example.php como base)
+application/config/email.php
+
+# Configuração de banco com credenciais reais (use database.example.php como base)
+application/config/database.php
+
 application/cache/*
 !application/cache/index.html
 
@@ -30,3 +36,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+
+.claude/

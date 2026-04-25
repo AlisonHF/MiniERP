@@ -1,5 +1,3 @@
-/* @TODO implementar o upload de imagens*/
-
 function validateForm(
     codigo,
     descricao,
@@ -42,12 +40,17 @@ function validateForm(
     return true;
 }
 
+function moneyToNumber(value) {
+    if (!value) return '';
+    return value.replace(/\./g, '').replace(',', '.');
+}
+
 function sendForm(url)
 {
     let codigo = $('#codigo').val();
     let descricao = $('#descricao').val();
     let unidade = $('#unidade').val();
-    let preco = $('#preco').val();
+    let preco = moneyToNumber($('#preco').val());
 
     if (!validateForm(codigo, descricao, unidade, preco)) {
         return false;
@@ -116,4 +119,17 @@ $('#editForm').submit(function(e) {
     e.preventDefault();
 
     sendForm('update');
+});
+
+$(document).ready(function () {
+    const valorAtual = $('#preco').val();
+
+    if (valorAtual) {
+        const numero = parseFloat(valorAtual.toString().replace(',', '.'));
+        if (!isNaN(numero)) {
+            $('#preco').val(numero.toFixed(2).replace('.', ','));
+        }
+    }
+
+    $('#preco').mask('#.##0,00', { reverse: true });
 });

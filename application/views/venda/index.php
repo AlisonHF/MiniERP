@@ -97,9 +97,15 @@
                                         title="Editar">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a href="#" id="<?= $venda['id'] ?>" class="btn btn-sm btn-danger delete" title="Excluir">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
+                                    <?php if ($venda['status'] === 'aberta'): ?>
+                                        <a href="#" id="<?= $venda['id'] ?>" class="btn btn-sm btn-danger delete" title="Excluir">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    <?php else: ?>
+                                        <button type="button" class="btn btn-sm btn-secondary" disabled title="Vendas <?= $venda['status'] ?>s não podem ser excluídas">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    <?php endif; ?>
                                 </span>
                             </div>
                         <?php endforeach; ?>

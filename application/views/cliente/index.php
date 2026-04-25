@@ -65,7 +65,9 @@
                                     <?= htmlspecialchars($cliente['tipo_pessoa'] === 'F' ? ($cliente['apelido'] ?? '-') : ($cliente['nome_fantasia'] ?? '-')) ?>
                                 </span>
                                 <span data-label="CPF / CNPJ">
-                                    <?= htmlspecialchars($cliente['tipo_pessoa'] === 'F' ? ($cliente['cpf'] ?? '-') : ($cliente['cnpj'] ?? '-')) ?>
+                                    <?= $cliente['tipo_pessoa'] === 'F'
+                                        ? (!empty($cliente['cpf'])  ? htmlspecialchars(format_cpf($cliente['cpf']))   : '-')
+                                        : (!empty($cliente['cnpj']) ? htmlspecialchars(format_cnpj($cliente['cnpj'])) : '-') ?>
                                 </span>
                                 <span class="date" data-label="Data Nasc. / Abertura">
                                     <?php

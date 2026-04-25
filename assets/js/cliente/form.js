@@ -80,14 +80,18 @@ function validatePessoaJuridica(razao_social, cnpj, inscricao_estadual, nome_fan
     return true;
 }
 
+function unmask(value) {
+    return (value || '').replace(/\D/g, '');
+}
+
 function sendForm(url)
 {
     let tipo_pessoa = $("#tipo_pessoa").val();
     let nome = $("#nome").val();
     let razao_social = $("#razao_social").val();
-    let cpf = $("#cpf").val();
-    let cnpj = $("#cnpj").val();
-    let rg = $("#rg").val();
+    let cpf = unmask($("#cpf").val());
+    let cnpj = unmask($("#cnpj").val());
+    let rg = unmask($("#rg").val());
     let inscricao_estadual = $("#inscricao_estadual").val();
     let apelido = $("#apelido").val();
     let nome_fantasia = $("#nome_fantasia").val();
@@ -179,6 +183,10 @@ $('#editForm').submit(function(e) {
 });
 
 $(document).ready(function () {
+    $('#cpf').mask('000.000.000-00', { reverse: false });
+    $('#cnpj').mask('00.000.000/0000-00', { reverse: false });
+    $('#rg').mask('00.000.000-0', { reverse: false });
+
     $("#tipo_pessoa").on('change', function (){
         let tipoPessoa = $("#tipo_pessoa").val();
 
@@ -223,4 +231,21 @@ $(document).ready(function () {
     });
 
     $("#tipo_pessoa").trigger('change');
+
+    $('#cnpj').on('blur', async function () {
+        const cnpj = $(this).val();
+        if (!cnpj) return;
+
+        const result = await ApiHelpers.buscarCnpj(cnpj);
+
+        if (!result.ok) {
+            Swal.fire({ icon: 'warning', title: result.error });
+            return;
+        }
+
+        const d = result.data;
+
+        if (d.razao_social)  $('#razao_social').val(d.razao_social);
+        if (d.nome_fantasia) $('#nome_fantasia').val(d.nome_fantasia);
+    });
 })

@@ -1,3 +1,5 @@
+<script src="<?= base_url('assets/js/helpers/api.js') ?>"></script>
+
 <div class="container-fluid auth-page">
     <div class="row h-100 justify-content-center align-items-center">
 

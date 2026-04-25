@@ -1,3 +1,5 @@
+<script src="<?= base_url('assets/js/helpers/api.js') ?>"></script>
+
 <div class="container-fluid empresa-create">
     <div class="row h-100">
 
@@ -51,6 +53,18 @@
 
                         <div class="row g-3">
                             <div class="col-md-6">
+                                <label for="cnpj" class="form-label">CNPJ</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="inscricaoEstadual" class="form-label">Inscrição estadual <small class="text-muted">(opcional)</small></label>
+                                <input type="text" class="form-control" id="inscricaoEstadual" name="inscricaoEstadual">
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mt-1">
+                            <div class="col-md-6">
                                 <label for="razaoSocial" class="form-label">Razão social</label>
                                 <input type="text" class="form-control" id="razaoSocial" name="razaoSocial" required>
                             </div>
@@ -58,18 +72,6 @@
                             <div class="col-md-6">
                                 <label for="nomeFantasia" class="form-label">Nome fantasia</label>
                                 <input type="text" class="form-control" id="nomeFantasia" name="nomeFantasia">
-                            </div>
-                        </div>
-
-                        <div class="row g-3 mt-1">
-                            <div class="col-md-6">
-                                <label for="cnpj" class="form-label">CNPJ</label>
-                                <input type="text" class="form-control" id="cnpj" name="cnpj" required>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="inscricaoEstadual" class="form-label">Inscrição estadual</label>
-                                <input type="text" class="form-control" id="inscricaoEstadual" name="inscricaoEstadual">
                             </div>
                         </div>
                     </fieldset>

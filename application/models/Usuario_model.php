@@ -108,6 +108,16 @@ class Usuario_model extends CI_Model
         return true;
     }
 
+    public function updateSenhaById(int $id, string $hashSenha): bool
+    {
+        try {
+            $this->db->update($this->table, ['senha' => $hashSenha], ['id' => $id]);
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
     public function delete(int $id, int $idEmpresa)
     {
         $usuario = $this->db->select('tipo_usuario')

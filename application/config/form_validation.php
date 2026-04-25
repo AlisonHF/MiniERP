@@ -44,7 +44,7 @@ $config = [
         [
             'field' => 'inscricaoEstadual',
             'label' => 'Inscrição Estadual',
-            'rules' => 'required|min_length[9]|max_length[15]'
+            'rules' => 'max_length[15]'
         ],
         [
             'field' => 'cep',
@@ -93,11 +93,6 @@ $config = [
             'label' => 'Unidade',
             'rules' => 'max_length[10]'
         ],
-        [
-            'field' => 'imagem',
-            'label' => 'Imagem',
-            'rules' => 'max_size[2048]'
-        ],
     ],
     'produto/update' => [
         [
@@ -114,11 +109,6 @@ $config = [
             'field' => 'unidade',
             'label' => 'Unidade',
             'rules' => 'max_length[10]'
-        ],
-        [
-            'field' => 'imagem',
-            'label' => 'Imagem',
-            'rules' => 'max_size[2048]'
         ],
     ],
     'usuario/store' => [
@@ -299,6 +289,23 @@ $config = [
             'field' => 'status',
             'label' => 'Status',
             'rules' => 'required|in_list[aberta,finalizada,cancelada]'
+        ],
+    ],
+    'senha/atualizar' => [
+        [
+            'field' => 'token',
+            'label' => 'Token',
+            'rules' => 'required|min_length[10]'
+        ],
+        [
+            'field' => 'senha',
+            'label' => 'Senha',
+            'rules' => 'required|min_length[6]|max_length[255]'
+        ],
+        [
+            'field' => 'confirmar_senha',
+            'label' => 'Confirmar senha',
+            'rules' => 'required|matches[senha]'
         ],
     ],
     'venda/update' => [

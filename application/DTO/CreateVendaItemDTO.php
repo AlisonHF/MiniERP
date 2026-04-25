@@ -8,6 +8,7 @@ class CreateVendaItemDTO
 {
     private int $idVenda;
     private int $idProduto;
+    private int $idEmpresa;
     private float $quantidade;
     private float $precoUnitario;
     private float $subtotal;
@@ -15,12 +16,14 @@ class CreateVendaItemDTO
     public function __construct(
         int $idVenda,
         int $idProduto,
+        int $idEmpresa,
         float $quantidade,
         float $precoUnitario,
         float $subtotal
     ) {
         $this->idVenda       = $idVenda;
         $this->idProduto     = $idProduto;
+        $this->idEmpresa     = $idEmpresa;
         $this->quantidade    = $quantidade;
         $this->precoUnitario = $precoUnitario;
         $this->subtotal      = $subtotal;
@@ -40,6 +43,11 @@ class CreateVendaItemDTO
     public function getIdProduto(): int
     {
         return $this->idProduto;
+    }
+
+    public function getIdEmpresa(): int
+    {
+        return $this->idEmpresa;
     }
 
     public function getQuantidade(): float
@@ -62,6 +70,7 @@ class CreateVendaItemDTO
         return [
             'id_venda'       => $this->idVenda,
             'id_produto'     => $this->idProduto,
+            'id_empresa'     => $this->idEmpresa,
             'quantidade'     => $this->quantidade,
             'preco_unitario' => $this->precoUnitario,
             'subtotal'       => $this->subtotal,
