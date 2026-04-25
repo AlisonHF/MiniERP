@@ -67,7 +67,6 @@ class Produto extends MY_Controller
             $produtos['descricao'],
             $produtos['unidade'] ?? null,
             (float) $produtos['preco'] ?? null,
-            $produtos['image'] ?? null,
             $this->getEmpresaiD()
         );
 
@@ -116,7 +115,6 @@ class Produto extends MY_Controller
             $produto['descricao'],
             $produto['unidade'],
             (float) $produto['preco'],
-            null,
             $this->getEmpresaiD(),
         );
 

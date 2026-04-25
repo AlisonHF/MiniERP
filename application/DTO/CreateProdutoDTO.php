@@ -10,7 +10,6 @@ class CreateProdutoDTO
     private string $descricao;
     private ?string $unidade;
     private ?float $preco;
-    private ?string $image;
     private int $id_empresa;
 
     public function __construct(
@@ -18,14 +17,12 @@ class CreateProdutoDTO
         string $descricao,
         ?string $unidade,
         ?float $preco,
-        ?string $image,
         int $id_empresa
     ) {
         $this->codigo = $codigo;
         $this->descricao = $descricao;
         $this->unidade = $unidade;
         $this->preco = $preco;
-        $this->image = $image;
         $this->id_empresa = $id_empresa;
     }
 
@@ -77,18 +74,6 @@ class CreateProdutoDTO
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
     public function getIdEmpresa(): int
     {
         return $this->id_empresa;
@@ -108,7 +93,6 @@ class CreateProdutoDTO
             'descricao' => $this->descricao,
             'unidade' => $this->unidade,
             'preco' => $this->preco,
-            'imagem' => $this->image,
             'id_empresa' => $this->id_empresa,
         ];
     }

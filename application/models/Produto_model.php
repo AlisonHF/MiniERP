@@ -65,8 +65,6 @@ class Produto_model extends CI_Model
                 'descricao' => $updateProdutoDto->getDescricao(),
                 'unidade' => $updateProdutoDto->getUnidade(),
                 'preco' => $updateProdutoDto->getPreco(),
-                'imagem' => $updateProdutoDto->getImagem(),
-                'update_at' => $updateProdutoDto->getUpdateAt()
             ],
             [
                 'id_empresa' => $updateProdutoDto->getIdEmpresa(),
